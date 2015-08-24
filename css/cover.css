@@ -1,0 +1,142 @@
+/* 회원가입 이메일 */
+.pop_join_email_select_wrap .ui-select{
+	margin:8px 0;
+}
+
+.pop_join_email_select_wrap .ui-select .ui-btn{
+	font-size: 12px;
+    margin: .5em 0;
+    padding: .87em 3.9em .87em 0em;
+    display: block;
+    position: relative;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.pop_join_email_select_wrap .ui-select .ui-btn>span:not(.ui-li-count){
+	font-size: 12px !important;
+	margin-left: 9px;
+}
+
+/* 회원가입 전화 */
+.pop_join_call_info .ui-select{
+    width:calc(28% - 4px);
+	float:left;
+}
+.pop_join_call_info div:nth-child(3), .pop_join_call_info div:nth-child(5){
+	width:29%;
+	float:left;
+}
+.pop_join_call_info .ui-select .ui-btn{
+	font-size: 12px;
+    padding: .87em 3.9em .87em 0em;
+    display: block;
+    position: relative;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* 생년월일 기입 */
+.pop_join_birth_info .ui-select{
+	width:24%;
+	float:left;
+}
+.pop_join_birth_info .ui-select .ui-btn{
+	font-size: 12px;
+    padding: .87em 3.9em .87em 0em;
+    display: block;
+    position: relative;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* 회원가입 이메일 */
+.pop_modify_email_select_wrap .ui-select{
+	margin:8px 0;
+}
+
+.pop_modify_email_select_wrap .ui-select .ui-btn{
+	font-size: 12px;
+    margin: .5em 0;
+    padding: .87em 3.9em .87em 0em;
+    display: block;
+    position: relative;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.pop_modify_email_select_wrap .ui-select .ui-btn>span:not(.ui-li-count){
+	font-size: 12px !important;
+	margin-left: 9px;
+}
+
+/* 회원가입 전화 */
+.pop_modify_call_info .ui-select{
+    width:calc(28% - 4px);
+	float:left;
+}
+.pop_modify_call_info div:nth-child(3), .pop_modify_call_info div:nth-child(5){
+	width:29%;
+	float:left;
+}
+.pop_modify_call_info .ui-select .ui-btn{
+	font-size: 12px;
+    padding: .87em 3.9em .87em 0em;
+    display: block;
+    position: relative;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* 생년월일 기입*/
+.pop_modify_birth_info .ui-select{
+	width:24%;
+	float:left;
+}
+.pop_modify_birth_info .ui-select .ui-btn{
+	font-size: 12px;
+    padding: .87em 3.9em .87em 0em;
+    display: block;
+    position: relative;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

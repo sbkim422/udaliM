@@ -1,0 +1,4023 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1.5, user-scalable=yes">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+		<link rel="stylesheet" type="text/css" href="css/cover.css">
+		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/post.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+		<style>
+			.inputIOS{
+				-webkit-border-radius:1px;
+				-webkit-appearance:none;
+			}
+			select{
+				-webkit-border-radius:1px;
+				-webkit-appearance:none;
+			}
+			#pop_join, #pop_mypage, #pop_modify, #main, #index, #pop_find, #pop_profile{
+				background-color:#ffffff;
+			}
+			#pop_join, #pop_modify{
+				overflow:hidden;
+			}
+			#main_map_view{
+				background-color: #eceff2;
+			}
+			#main_map{
+				background-color: #90a4b4;
+			}
+			#logo_big{
+				width:80%;
+			}
+			#head{
+				width:100%; 
+				text-align:center; 
+				height:50%;
+				margin:13% 0;
+			}
+			#content{
+				width:100%;
+			}
+			.empty{
+				height:20px;
+				width:100%;
+			}
+			.button_style{
+				background-color:red;
+			}
+			.mybutton{
+				background-color:#3497d9 !important;
+				border-color:#3497d9 !important;
+				color:white !important;
+				text-shadow: 0 0 0 white !important;
+				margin: 1em 0 .5em 0 !important;
+				padding: .5em 0 !important;
+				display: inline-block !important;
+			}
+			.mybutton1{
+				margin: 2em 0 .5em 0 !important;
+				padding: .5em 0 !important;
+				display: inline-block !important;
+			}
+			.pop_fixed_head{
+				z-index:999;
+				position:fixed;
+				top:0px !important;
+				padding:10px 0;
+				border-bottom:solid 1px gray;
+				width: 100%;
+				background-color: #023e99;
+				text-shadow: 0 0px 0 black !important;
+				color:white !important;
+				margin-bottom:10px;
+			}
+			/* pop_find*/
+			#pop_find_head{
+				padding:10px 0;
+				border-bottom:solid 1px gray;
+			}
+			.style_margin0{
+				margin:0 10%;
+			}
+			.style_margin1{
+				margin:0 10px 5px 10px;
+			}
+			.style_margin2{
+				margin:0 10px;
+			}
+			.pop_find_font{
+				text-shadow: 0 0px 0 black !important;
+				color:white !important;
+			}
+			#close_btn{
+				position: absolute;
+				padding-top:4px;
+			    width: 26px;
+			    height: 26px;
+				right: 10px;
+				top: 10px;
+				cursor:pointer;
+			}
+			#getCanvas{
+				position: absolute;
+  			    text-align: center;
+			    margin: 40px 0 30px 0;
+			}
+			#pop_find_id{
+				margin-top:20px;
+			}
+			#pop_find_pw{
+				margin-top:40px;
+			}
+			.pop_find_margin{
+				margin:0 0 0 10px;
+			}
+			.pop_find_btn{
+				background-color:#5c5c5c !important;
+				color:white !important;
+				text-shadow: 0 0 0 white !important;
+				border-color:#5c5c5c !important;
+				padding:.5em 0 !important;
+			}
+			/* pop_join */
+			.pop_join_hidden{
+				display:none;
+			}
+			.pop_join_btn{
+				background-color:#5c5c5c !important;
+				color:white !important;
+				text-shadow: 0 0 0 white !important;
+				border-color:#dedede !important;
+				padding:.5em 0 !important;
+			}
+			.pop_join_photo{
+				text-align:center; 
+				margin:40px 0 30px 0; 
+			}
+			.pop_join_select_style{
+				margin:0 10px;
+			}
+			.pop_join_div{
+				height:40px;
+			}
+			.pop_join_box{
+				height:40px;
+				float:left;
+				border-left:solid 1px gray;
+				border-top:solid 1px gray;
+				border-bottom:solid 1px gray;
+			}
+			.pop_join_Lbox{
+				height:40px;
+				float:left;
+				border:solid 1px gray;
+			}
+			.pop_find_chair{
+				margin-top:20px;
+			}
+			#pop_find_chair_div{
+				position:relative;
+				background-color:gray;
+				width:100%;
+				height:600px;
+			}
+			.pop_join_font{
+				text-shadow: 0 0px 0 black !important;
+				color:white !important;
+				text-align:center;
+				margin-top:5px;
+			}
+			.pop_join_email_id{
+				width:32%;
+				float:left;
+			}
+			.pop_join_email_at{	
+				text-align:center;
+				width:7%;
+				float:left;
+				height:53px;
+				line-height:53px;
+				color:white;
+				text-shadow:0 0 0 white;
+			}
+			.pop_join_email_add_wrap{
+				width:30%;
+				float:left;
+				margin-right:2%;
+			}
+			.pop_join_email_select_wrap{
+				width:29%;
+				float:left;
+			}
+			.pop_join_front_number{
+				text-align:center;
+				width:7%;
+				float:left;
+				height:53px;
+				line-height:53px;
+				color:white;
+				text-shadow:0 0 0 white;
+			}
+			.pop_join_back_number{
+				text-align:center;
+				width:7%;
+				float:left;
+				height:53px;
+				line-height:53px;
+				color:white;
+				text-shadow:0 0 0 white;
+			}
+			/* pop_join 사내 자리 선택 박스*/
+			.pop_join_email_wrap{
+				margin-bottom:61px;
+				margin-top:-8px;
+			}
+			.pop_find_prod{
+				height:200px;
+				background-color: #16a085;
+				position:absolute;
+				top:0;
+				left:0;
+			}
+			.pop_find_prod_suv{
+				height:50px;
+				background-color: #27ae60;
+				position:absolute;
+				top:150px;
+			}	
+			.pop_find_plan{
+				height:200px;
+				background-color: #1abc9c;
+				position:absolute;
+				top:0;
+				right:0;
+			}
+			.pop_find_pres{
+				height:150px;
+				background-color: #2980b9;
+				position:absolute;
+				top:200px;
+				left:0;
+			}
+			.pop_find_movi{
+				height:150px;
+				background-color: #3498db;
+				position:absolute;
+				top:200px;
+				right:0;
+			}
+			.pop_find_meet{
+				height:150px;
+				background-color: #8e44ad;
+				position:absolute;
+				top:350px;
+				left:0;
+			}
+			.pop_find_mana{
+				height:150px;
+				background-color: #9b59b6;
+				position:absolute;
+				top:350px;
+				right:0;
+			}
+			.pop_find_mtoil{
+				height:100px;
+				background-color: #f39c12;
+				position:absolute;
+				top:500px;
+				left:0;
+			}
+			.pop_find_wtoil{
+				height:100px;
+				background-color: #f1c40f;
+				position:absolute;
+				top:500px;
+				right:0;
+			}
+			.pop_join_btn{
+				background-color:#e0e0e0 !important;
+				color:white !important;
+				text-shadow: 0 0 0 white !important;
+				border-color:#e0e0e0 !important;
+				padding:.5em 0 !important;
+			}
+			.pop_join_empty{
+				height:192px;
+			}
+			.check_chair_selected{
+				color:darkgray !important;
+				text-shadow: 0 0px 0 black !important;
+				text-align: center;
+				margin-top: 5px;
+			}
+			.pop_join_birth_style{
+				margin-left:10px;
+				float:left;
+ 			    margin-bottom: .5em;
+			}
+			.pop_join_font1{
+				text-shadow: 0 0px 0 black !important;
+				color:white !important;
+				text-align:center;
+				font-size: small;
+				float:left;
+			}
+			.pop_join_days{
+				width:7%;
+				float:left;
+				text-align:center;
+				height:53px;
+				line-height:52px;
+			}
+			.pop_join_days3{
+				width:7%;
+				float:left;
+				text-align:center;
+				height:53px;
+				line-height:52px;
+				margin-right:1%;
+			}
+			.clear_both{
+				clear:both;
+			}
+			.pop_join_birth_radio{
+				float: left;
+			    margin-left: 5px;  
+			}
+			/* main페이지 */
+			#main_header{
+				z-index:999;
+				position:fixed;
+				top:0px !important;
+				width:100%;
+				margin:0;
+				padding:0;
+				background-color: #023e99;
+				height: 50px;
+				border: solid 0px white !important;
+			}
+			#main_footer{
+				z-index:999;
+				position:fixed;
+				width:100%;
+				bottom:0px;
+				margin:0;
+				padding:0;
+				background-color: #7f7f7f;
+				height: 50px;
+			}
+			.main_logo{
+				height:50px;
+				float:left;
+				margin:2.5px 0 0 0;
+				position:absolute;
+				left:calc(50% - 22.5px);
+			}
+			.main_header_icon_left{
+				height:50px;
+				margin:5px 0 0 5px;
+			}
+			.main_header_icon_right{
+				height:50px;
+				margin:5px 5px 0 0;
+			}
+			.float_left{
+				float:left;
+			}
+			.float_right{
+				float:right;
+			}
+			.main_footer_left{
+				height:50px;
+				float:left;
+				margin:5px 0 0 5px;
+			}
+			.main_footer_right{
+				height:50px;
+				margin:5px 0 0 0;
+				position:absolute;
+				left:calc(25% - 15px);
+			}
+			.main_footer_scheduler{
+				height:50px;
+				float:left;
+				margin:5px 0 0 0;
+				position:absolute;
+				left:calc(50% - 20px);
+			}
+			.main_footer_choice{
+				height:50px;
+				float:left;
+				margin:5px 0 0 0;
+				position:absolute;
+				right:calc(25% - 15px);
+			}
+			.main_footer_home{
+				height:50px;
+				float:right;
+				margin:5px 5px 0 0;
+			}
+			.main_font{
+				text-shadow: 0 0px 0 black !important;
+				color:white !important;
+			}
+			.main_p{
+				padding: 5px 5px 5px 5px;
+				position: absolute;
+				border: solid 2px cadetblue;
+				border-radius: 5px;
+				background-color: cadetblue;
+				position:absolute;
+				text-overflow:ellipsis;
+				overflow:hidden;
+				font-size:13px;
+			}
+			.main_p_icon{
+				position: absolute;
+				border-top: 5px solid transparent;
+				border-right: 10px solid cadetblue;
+				border-bottom: 5px solid transparent;
+			}
+			/* profile */
+			.profile_first{
+				width:60px;
+				height:100px;
+				float:left;
+			}
+			.profile_second{
+				height:100px;
+				float:left;
+				position:absolute;
+			}
+			.profile_third{
+				width:50px;
+				height:100px;
+				float:rigth;
+				position:absolute;
+			}
+			.main_line_height{
+				line-height:20px; 
+				font-size:12px;
+			}
+			.profile_second_2{
+				background-color:#7f7f7f;
+				text-align:center;
+				font-size:13px;
+			}
+			.profile_second_3{
+				background-color:#000000;
+				text-align:center;
+				font-size:13px;
+			 }
+			.profile_second_4{
+				text-align:center;
+				font-size:13px;
+				z-index:900;
+			 }
+			 .main_p_wrap{
+				vertical-align: middle;
+			 }
+			 .profile_second_1{
+				 background-color:
+				 #e0e0e0;
+				 text-align:center;
+			 }
+			 .profile_first_1{
+				 background-color:black;
+			 }
+			 .profile_first_2{
+				 background-color:#e67e22;
+				 text-align:center;
+				 vertical-align;
+				 font-size:13px;
+			 }
+			 .profile_first_3{
+				background-color:#16a085;
+				text-align:center;
+				font-size:13px;"
+			  }
+			  .main_profile_condition{
+				height:20px;
+			  }
+			  .main_box{
+				height:20px;
+				float:left;
+			  }
+			  .main_condition_z{
+				z-index:900;
+			  }
+			/* pop_mypage */
+			#pop_mypage_com{
+				height:60px;
+			}
+			.pop_mypage_ceo_btn{
+				display:none;
+			}
+			#pop_mypage_head{
+				padding:10px 0;
+				border-bottom:solid 1px gray;
+			}
+			.pop_mypage_font{
+				text-shadow: 0 0px 0 black !important;
+				color:white !important;
+				text-align:center;
+				margin-top:5px;
+			}
+			.pop_mypage_select_style{
+				margin:0 10px;
+			}
+			.pop_page_div{
+				height:40px;
+			}
+			.pop_mypage_box{
+				height:40px;
+				float:left;
+				margin-bottom:10px;
+				border-left:solid 1px gray;
+				border-top:solid 1px gray;
+				border-bottom:solid 1px gray;
+			}
+			.pop_mypage_modify_btn{
+				background-color: #3497d9 !important;	
+				border-color: #3497d9 !important;
+				color: white !important;
+				text-shadow: 0 0 0 white !important;
+				display: inline-block !important;
+				margin-top: 0px !important;
+			}
+			.pop_mypage_Lbox {
+				height:40px;
+				float:left;
+				border:solid 1px gray;
+			}
+			/* modify */
+			#pop_modify_id {
+				color: black !important;
+				text-shadow: initial !important;
+			}
+			.pop_modify_birth_radio{
+				float: left;
+			    margin-left: 5px;  
+			}
+			.pop_modify_font1 {
+				color:white !important;
+				text-shadow: 0 0px 0 black !important;
+				text-align:center;
+			    font-size: small;
+				float:left;
+				background-color: #023e99;
+			}
+			.pop_modify_box {
+				height:40px;
+				float:left;
+				border-left:solid 1px gray;
+				border-top:solid 1px gray;
+				border-bottom:solid 1px gray;
+			}
+			.pop_mypage_modify_btn {
+				background-color: #3497d9 !important;	
+				border-color: #3497d9 !important;
+				color: white !important;
+				text-shadow: 0 0 0 white !important;
+				display: inline-block !important;
+				margin-top: 0px !important;
+			}
+			.pop_mypage_ceo{
+				color: white !important;
+				background-color: #5e5e5e !important;
+				border-color: #5e5e5e !important;
+				text-shadow: 0 1px 0 #5e5e5e !important;
+			}
+			.pop_modify_Lbox {
+				height:40px;
+				float:left;
+				border:solid 1px gray;
+			}
+			#getCanvas2 {
+				display:none;
+				position: absolute;
+  			    text-align: center;
+			    margin: 40px 0 30px 0;
+			}
+			.pop_modify_chair{
+				margin-top:60px;
+			}
+			#pop_modify_email_id{
+				width:32%;
+				float:left;
+			}
+			.pop_modify_email_at{
+				text-align:center;
+				width:7%;
+				float:left;
+				height:53px;
+				line-height:53px;
+				color:white;
+				text-shadow:0 0 0 white;
+			}
+			.pop_modify_email_add_wrap{
+				width:30%;
+				float:left;
+				margin-right:2%;
+			}
+			.pop_modify_email_select_wrap{
+				width:29%;
+				float:left;
+			}
+			.pop_modify_front_number{
+				text-align:center;
+				width:7%;
+				float:left;
+				height:53px;
+				line-height:53px;
+				color:white;
+				text-shadow:0 0 0 white;
+			}
+			.pop_modify_back_number{
+				text-align:center;
+				width:7%;
+				float:left;
+				height:53px;
+				line-height:53px;
+				color:white;
+				text-shadow:0 0 0 white;
+			}
+			#pop_modify_chair_div{
+				position:relative;
+				background-color:gray;
+				width:100%;
+				height:600px;
+			}
+			.pop_modify_prod{
+				height:200px;
+				background-color: #16a085;
+				position:absolute;
+				top:0;
+				left:0;
+			}
+			.pop_modify_prod_suv{
+				height:50px;
+				background-color: #27ae60;
+				position:absolute;
+				top:150px;
+			}	
+			.pop_modify_plan{
+				height:200px;
+				background-color: #1abc9c;
+				position:absolute;
+				top:0;
+				right:0;
+			}
+			.pop_modify_pres{
+				height:150px;
+				background-color: #2980b9;
+				position:absolute;
+				top:200px;
+				left:0;
+			}
+			.pop_modify_movi{
+				height:150px;
+				background-color: #3498db;
+				position:absolute;
+				top:200px;
+				right:0;
+			}
+			.pop_modify_meet{
+				height:150px;
+				background-color: #8e44ad;
+				position:absolute;
+				top:350px;
+				left:0;
+			}
+			.pop_modify_mana{
+				height:150px;
+				background-color: #9b59b6;
+				position:absolute;
+				top:350px;
+				right:0;
+			}
+			.pop_modify_mtoil{
+				height:100px;
+				background-color: #f39c12;
+				position:absolute;
+				top:500px;
+				left:0;
+			}
+			.pop_modify_wtoil{
+				height:100px;
+				background-color: #f1c40f;
+				position:absolute;
+				top:500px;
+				right:0;
+			}
+			.pop_modify_font{
+				text-shadow: 0 0px 0 black !important;
+				color:white !important;
+				text-align:center;
+				margin-top:5px;
+			}
+			.pop_join_call_info{
+				margin-top:-8px;
+			}
+			.pop_modify_call_info{
+				margin-top:-8px;
+			}
+			/* main_map */
+			#main_map_content{
+				margin: 50px 0;
+			}
+			.main_map_font{
+				color: white;
+				text-align: center;
+				font-size:20px;
+			}
+			#main_map_shadow{
+				position:fixed;
+				top:0;
+				left:0;
+				display:none;
+				background-color:black;
+				opacity:0.5;
+				width:100%;
+				height:100%;
+				z-index:9998;
+			}
+			#main_map_shadow_in{
+				position:fixed;
+				top:10%;
+				left:10%;
+				width:80%;
+				height:80%;
+				display:none;
+				background-color:black;
+				z-index:9999;
+			}
+			#main_map_shadow_header{
+				height:50px;
+				padding:10px 0;
+				width:100%;
+				color:white;
+				font-size:30px;
+				line-height:45px;
+				text-align:center;
+			}
+			#main_map_close_btn{
+				cursor:pointer;
+				position:absolute;
+				right:15px;
+				top:15px;
+			}
+			#main_map_first_1,#main_map_first_3,#main_map_third_1,#main_map_third_2,#main_map_third_3{
+				cursor:pointer;
+			}
+			/* pop_profile */
+			#pop_profile_head{
+				padding:10px 0;
+				border-bottom:solid 1px gray;
+			}
+			.pop_profile_font{
+				text-shadow: 0 0px 0 black !important;
+				color:white !important;
+				text-align:center;
+				margin-top:5px;
+			}
+			.pop_profile_font1{
+				text-shadow: 0 0px 0 black !important;
+				color:white !important;
+				text-align:center;
+				margin:10px 0 5px 0;
+			}
+			.pop_profile_box1{
+				height:40px;
+				float:left;
+				margin-bottom:10px;
+				border-left:solid 1px gray;
+				border-top:solid 1px gray;
+				border-bottom:solid 1px gray;
+			}
+			.pop_profile_box2{
+				height:40px;
+				float:left;
+				margin-bottom:10px;
+				border:solid 1px gray;
+			}
+			.pop_profile_photo{
+				text-align:center; 
+				margin:20px 0 10px 0; 
+			}
+			.pop_profile_box{
+				width:90%;
+				margin:8px auto;
+				height:20px;
+				padding:11px 0;
+				background-color:white;
+				border-radius:8px;
+				text-shadow: 0 0px 0 black !important;
+				color:black !important;
+				text-align:center;
+				margin-top:5px;
+			}
+			.pop_profile_init{
+				background-color:white;
+			}
+			#pop_profile_4{
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			.backgc_white{
+				background-color:white;
+				border-radius:4px;
+				box-shadow:0 0 12px #38c;
+			}
+			.pop_join_birth_info{
+				margin-top:-8px;
+			}
+			.pop_modify_birth_info{
+				margin-top:-8px;
+			}
+			.pop_modify_birth_style{
+				margin-left:10px;
+				float:left;
+ 			    margin-bottom: .5em;
+			}
+			.pop_modify_font1{
+				text-shadow: 0 0px 0 black !important;
+				color:white !important;
+				text-align:center;
+				font-size: small;
+				float:left;
+			}
+			.pop_modify_days{
+				width:7%;
+				float:left;
+				text-align:center;
+				height:53px;
+				line-height:52px;
+			}
+			.pop_modify_days1{
+				width:10%;
+				float:left;
+				text-align:center;
+				height:53px;
+				line-height:52px;
+			}
+			.pop_modify_days3{
+				width:7%;
+				float:left;
+				text-align:center;
+				height:53px;
+				line-height:52px;
+				margin-right:1%;
+			}
+			.pop_modify_birth_radio{
+				float: left;
+			    margin-left: 5px;  
+			}
+			/* pop_workDaily */
+			#pop_workDaily_head{
+				padding:10px 0;
+				border-bottom:solid 1px gray;
+			    position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 9999;
+				background-color: #023e99;
+			}
+			#pop_workDaily_footer{
+			    padding:0 5px;
+				position:fixed;
+				width:calc(100% - 10px);
+				bottom:0;
+				left:0;
+				background-color: #023e99;
+				z-index: 9999;
+			}
+			#pop_workDaily_content{
+				width:100%;
+			    box-sizing:border-box;
+			    padding:10px 0;
+				margin-top: 52px;
+				overflow: auto;
+			}
+			.pop_workDaily_list_div{
+				width:100%;
+				height:50px;
+				margin-bottom:5px;
+			}
+			.pop_workDaily_list_ul{
+				list-style-type:none;
+				color:black;
+				text-shadow:0 0 0 black;
+				font-size:11px;
+			}
+			.pop_workDaily_list_subject{
+				float:left;
+				height:50px;
+				width:45%;
+				text-align:center;
+				line-height:50px;
+				background-color:#e0e0e0;
+			}
+			.pop_workDaily_list_name{
+				float:left;
+				height:50px;
+				width:18%;
+				text-align:center;
+				line-height:50px;
+				background-color:#27ae60;
+			}
+			.pop_workDaily_list_date{
+				float:left;
+				height:50px;
+				width:22%;
+				text-align:center;
+				line-height:50px;
+				background-color:#2980b9;
+			}
+			.pop_workDaily_list_refilename{
+				float:left;
+				height:50px;
+				width:15%;
+				text-align:center;
+				background-color:#f39c12;
+			}
+			.pop_workDaily_list_img_wrap{
+				padding-top:11px;
+			}
+			/* pop_sceduler */
+			.pop_scheduler_modify_date_wrap{
+				font-size:10px !important;
+			}
+			.pop_scheduler_modify_dateY{
+				float:left;
+				width:32%;
+				margin-right:2%;
+			}
+			.pop_scheduler_modify_dateM{
+				float:left;
+				width:32%;
+				margin-right:2%;
+			}
+			.pop_scheduler_modify_EndH{
+				float:left;
+				width:49%;
+				margin-right:calc(2%);
+			}
+			.pop_scheduler_modify_EndM{
+				float:left;
+				width:49%;
+			}
+			.pop_scheduler_modify_StartM{
+				float:left;
+				width:49%;
+			}
+			.pop_scheduler_modify_StartH{
+				float:left;
+				width:49%;
+				margin-right:2%;
+			}
+			.pop_scheduler_modify_dateD{
+				float:left;
+				width:32%;
+			}
+			#pop_scheduler_head{
+				padding:10px 0;
+				border-bottom:solid 1px gray;
+			    position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 9999;
+				background-color: #023e99;
+			}
+			#pop_scheduler_footer{
+			    padding:0 10px;
+				position:fixed;
+				width:calc(100% - 20px);
+				bottom:0;
+				left:0;
+				background-color: #023e99;
+				z-index: 9999;
+			}
+			#pop_scheduler_register_btn{
+				background-color: #3498db;
+				border: 0 solid #3498db;
+				color: white;
+				text-shadow: 0 0 0 white;
+			}
+			/* pop_register */
+			#pop_register_head{
+				padding:10px 0;
+				border-bottom:solid 1px gray;
+				width: 100%;
+				background-color: #023e99;
+			}
+			#pop_register_content{
+				margin:20px 10px 20px 10px;
+			}
+			#pop_register_footer{
+				margin:150px 10px 0 10px;
+			}
+			/* pop_notice */
+			.pop_register_date_wrap{
+				font-size:10px !important;
+			}
+			#getCanvas1 {
+				position: absolute;
+  			    text-align: center;
+			    margin: 40px 0 30px 0;
+			}
+			.pop_join_email_select, .pop_join_call_num, #pop_join_month,#pop_join_day,.profile_input_style,.pop_modify_email_select,.pop_modify_call_num,#pop_modify_month,#pop_modify_day,.profile_input_style,#pop_register_dateY,#pop_register_dateM,#pop_register_dateD,.register_select_style,#pop_scheduler_modify_dateY,#pop_scheduler_modify_dateM,#pop_scheduler_modify_dateD{
+				background-color:white;
+			}
+			/* 공용 */
+			*{border:0;margin:0;padding:0;font-family:'NanumBarunGothic'}
+			html, body { height: 100%; width: 100%; margin: 0; }
+			a{text-decoration: blink;}
+			/* 헤드 공용 */
+			.common_top_bg{
+				height:50px;
+				width:100%;
+			}
+			.common_head{
+				height:50px;
+				width:100%;
+			}
+			.common_head_fixed{
+				height:50px;
+				width:100%;
+				position: fixed;
+				top: 0;
+			}
+			.common_head_content{
+				height:50px;
+				width:100%;
+				position:absolute;
+				z-index:9999;
+				text-align:center;
+				line-height:50px;
+			}
+			.common_head_text{
+				text-shadow: 0 0 0 white;
+				font-size:20px;
+				color:white;
+				font-weight:normal;
+			}
+			/* 헤드 공용 */
+			/* 파란 버튼 공용 */
+			.common_btn{
+				margin:0 10%;
+			}
+			.common_blut_text{
+				position:absolute;
+				width:80%;
+				height:50px;
+				line-height:50px;
+				text-align:center;
+				z-index:9999;
+				color:white;
+				font-size:18px;
+				font-weight: 400;
+				text-shadow: 0 0 0 white;
+			}
+			.common_blue_btn{
+				width:100%;
+				height:50px;
+			}
+			/* 파란 버튼 */
+			/* 닫기 공용 */
+			.close_btn{
+				position:absolute;
+				right:0;
+				top:0;
+				width:50px;
+				height:50px;
+			}
+			/* 닫기 공용 */
+
+			/* 인덱스 페이지 */
+			#index{
+				overflow:hidden;
+				background-color:white;
+			}
+			.index_logo{
+				width:80%;
+				margin:15% 10% 5% 10%;
+			}
+			.index_id_wrap{
+				margin: 5% 10% 0 10%;
+				width: 80%;
+				height: 50px;
+			}
+			.index_id_bg{
+				width:100%;
+				height:50px;
+			}
+			.index_id_icon{
+			    position: absolute;
+				z-index: 999;
+				width: 30px;
+				height: 30px;
+				padding: 9px;
+			}
+			.index_password_wrap{
+				margin: 5% 10% 0 10%;
+				width: 80%;
+				height: 50px;
+			}
+			.index_password_bg{
+				width:100%;
+				height:50px;
+				position:relative;
+			}
+			.index_login_btn{
+				margin:30px 10% 30px 10%;
+				width:80%;
+				height:50px;
+			}
+			.index_login_btn_img{
+				width:100%;
+				height:50px;
+				position:relative;
+			}
+			.login_text{
+			    position: absolute;
+				color: white;
+				z-index: 9999;
+				font-size: 18px;
+				text-align: center;
+				width:80%;
+				height:50px;
+				line-height:50px;
+			}
+			.index_find_icon{
+				margin:30px 10% 0 10%;
+				text-align: center;
+			}
+			.index_join_btn_wrap{
+				position:absolute;
+				bottom:0;
+				width:100%;
+				height:53px;
+			}
+			.index_join_btn{
+				width:100%;
+				height:53px;
+				position: relative;
+			}
+			.index_join_btn_text{
+				position: absolute;
+				color: white;
+				z-index: 9999;
+				font-size: 18px;
+				text-align: center;
+				width:100%;
+				height:30px;
+				line-height:53px;
+			}
+			.index_join_footer_logo{
+				position: absolute;
+				margin-top:5px;
+			}
+			.index_find{
+				text-decoration:underline;
+				font-size:13px;
+			}
+			.index_input{
+				-webkit-border-radius:1px;
+				-webkit-appearance:none;
+				position: absolute;
+				width: calc(80% - 80px);
+				border-left: 1px solid gray;
+				margin: 9px 0 0 47px;
+				z-index: 9999;
+				padding: 5px 5px 5px 10px; 
+			}
+			.index_join_footer_text{
+				margin-left: 50px;
+				line-height:53px;
+				font-size:18px;
+				font-weight:400;
+			}
+			/* 파인드 페이지 */
+			.find_id_wrap{
+				margin:50px 10% 20px 10%;
+				width:80%;
+			}
+			.find_input{
+				-webkit-border-radius:1px;
+				-webkit-appearance:none;
+				width:100%;
+				height:50px;
+				position:relative;
+				margin-bottom:20px;
+			}
+			.find_input1{
+				-webkit-border-radius:1px;
+				-webkit-appearance:none;
+				width:100%;
+				height:50px;
+				position:relative;
+				margin-bottom:20px;
+				margin-top:3px;
+			}
+			.find_text{
+				color:#4f5f6f;
+				font-size:18px;
+				font-weight:600;
+				margin-bottom:5px;
+			}
+			.find_id_mobile{
+				float:left;
+				position:absolute;
+				width:30%;
+				z-index:9999;
+				text-align: center;
+				height:50px;
+				line-height:50px;
+				color:#4f5f6f;
+			}
+			.find_input_style{
+				-webkit-border-radius:1px;
+				-webkit-appearance:none;
+				float:left;
+				position:absolute;
+				width:60%;
+				right:5px;
+				z-index:9999;
+				padding: 5px 5px 5px 10px; 
+				border-left: 1px solid gray;
+				margin: 10px 0 0 0;
+			}
+			/* 메인 페이지 */
+			#loading{
+				position:fixed;
+				top:0;
+				width:100%;
+				height:100%;
+				z-index:9999;
+				background-color:white;
+			}
+			#loading_img{
+				position:fixed;
+				left:calc(50% - 25px);
+				top:calc(50% - 25px);
+				width:50px;
+				height:50px;
+			}
+			.main_head{
+				position:fixed;
+				top:0;
+				height:50px;
+				width:100%;
+			}
+			.map_view_head{
+				top:0;
+				height:50px;
+				width:100%;
+				z-index:1;
+			}
+			.main_head_bg{
+				height:50px;
+				width:100%;
+			}
+			.main_modify_icon{
+				position:absolute;
+				width:42px;
+				height:42px;
+				left:15px;
+				top:3px;
+			}
+			.main_logo_icon{
+				position:absolute;
+				width:42px;
+				height:42px;
+				left:calc(50% - 22.5px);
+				top:3px;
+			}
+			.main_mainMap_icon{
+				position:absolute;
+				height:35px;
+				right:15px;
+				top:7px;
+			}
+			#main_content{
+				padding:50px 0 50px 0;
+			}
+			/* 메인 프로필 */
+			.main_pofile{
+				width:100%;height:220px;margin-top:20px;background-color:white;
+			}
+			.main_profile_first{
+				width:100%;height:160px;
+			}
+			.main_profile_second{
+				width:100%;height:60px;box-shadow: 1px 1px 5px black
+			}
+			.main_profile_second_1{
+				background-color:#59c2e6;width:50%;height:60px;float:left;font-size:18px;color:white;text-shadow:0 0 0 white;text-align:center;line-height:60px;font-weight:bold;
+			}
+			.main_profile_second_2{
+				background-color:#4f5f6f;width:50%;height:60px;float:left;font-size:18px;color:white;text-shadow:0 0 0 white;text-align:center;line-height:60px;font-weight:bold;
+			}
+			.main_profile_first_1{
+				width:120px;height:160px;float:left;
+			}
+			.main_profile_first_2{
+				width:calc(100% - 120px);height:160px;float:left;
+			}
+			.main_profile_first_1_1{
+				width:120px;height:120px;float:left;overflow: hidden;
+			}
+			.main_profile_first_1_2{
+				background-color:black;width:120px;height:40px;float:left;text-align:center;line-height:40px;font-size:20px;color:white;text-shadow:0 0 0 white;font-weight:bold;
+			}
+			.main_profile_first_1_1_img{
+				width:120px;
+			}
+			.main_profile_first_2_1{
+				width:100%;height:50px;text-align:center;line-height:50px;font-size:16px;color:#4f5f6f;text-shadow:0 0 0 white;box-sizing:border-box;border-bottom:1px solid #a1b1c2;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;
+			}
+			.main_profile_first_2_2{
+				width:100%;height:110px;font-size:15px;
+			}
+			.main_profile_first_2_2_1{
+				width:calc(100% - 80px);height:110px;float:left;text-shadow:0 0 0 white;box-sizing:border-box;border-right:1px solid #a1b1c2;
+			}
+			.main_profile_first_2_2_2{
+				width:80px;height:110px;float:left;
+			}
+			.main_profile_first_2_2_1_1{
+				width:90%;height:36.6px;float:left;margin-left:10%;line-height:39.6px;
+			}
+			.main_profile_first_2_2_1_2{
+				width:90%;height:36.6px;float:left;margin-left:10%;line-height:36.6px;
+			}
+			.main_profile_first_2_2_1_3{
+				width:90%;height:36.7px;float:left;margin-left:10%;line-height:33.7px;
+			}
+			.main_profile_first_2_2_1_1_text{
+				color:#4f5f6f;
+			}
+			.main_profile_first_2_2_1_1_text1{
+				color:#9cacb8;
+			}
+			.main_profile_first_2_2_1_1_text2{
+				color:#de6559;
+			}
+			.main_profile_condition{
+				padding:5px;width:70px;height:100px;
+			}
+			.main_profile_condition_text{
+				width:70px;height:30px;color:#4f5f6f;line-height:30px;text-align:center;text-shadow:0 0 0 white;
+			}
+			.main_profile_condition_1{
+				margin-left:10%;width:70px;height:70px;
+			}
+			.main_profile_condition_bar{
+				height:11px;width:80%;margin-bottom:2px;
+			}
+			.main_profile_condition_barI{
+				width:100%;height:100%;
+			}
+			/* 메인 프로필 */
+			.main_footer{
+				width:100%;height:50px;position:fixed;bottom:0;background-image:url('img/main_foot_bg.gif');background-repeat: repeat;background-size: cover;
+			}
+			.main_footer_icons{
+				width:100%;height:50px;text-align:center;margin-top:2px;
+			}
+			.main_footer_icons_style{
+				width:25%;height:50px;float:left;box-sizing:border-box;border-right:1px solid #e6e7e9;padding-top:6px;
+			}
+			.main_footer_icons_style1{
+				width:25%;height:50px;float:left;padding-top:5px;
+			}
+			/* 알림 페이지 */
+			.pop_notice_footer{
+				width:100%;height:50px;position:fixed;bottom:0;background-image:url('img/main_foot_bg.gif');background-repeat: repeat;background-size: cover;
+			}
+			.notice_content{
+				margin:50px 0; 
+				background-color:white;
+			}
+			.notice_content_info{
+				width:100%;height:55px;color:#4f5f6f;text-shadow:0 0 0 white;font-size:15px;text-align:center;border-bottom:1px solid gray;
+			}
+			.notice_p{
+				padding:10px 15px;
+				display:none;
+				color:#4f5f6f;
+				font-size:13px;
+				text-shadow:0 0 0 black;
+				background-color:#eceff2;
+				clear: both;
+				text-align:left;
+			}
+			#scheduler_content{
+				width:100%;
+			    box-sizing:border-box;
+				margin: 50px 0 !important;
+				overflow: auto;	
+				background:#90a4b4;
+				height:100%;
+			}
+			/* 스케줄 리스트 */ 
+			.scheduler_list{
+				background-color:white;width:100%;margin-top:20px;box-shadow:1px 1px 5px black;
+			}
+			.scheduler_list_1{
+				width:100%;height:50px;color:#4f5f6f;text-shadow:0 0 0 white;font-size:20px;text-align:center;line-height:50px;box-sizing:border-box;border-bottom:1px solid #eceff2
+			}
+			.scheduler_list_2{
+				background-color:white;width:100%;height:120px;
+			}
+			.scheduler_list_3{
+				width:100%;height:50px;text-align:center;line-height:50px;color:white;text-shadow:0 0 0 white;font-size:18px;
+			}
+			.scheduler_list_2_img{
+				background-color:white;width:120px;height:120px;float:left;
+			}
+			.scheduler_list_2_1{
+				background-color:white;width:calc(100% - 120px);height:120px;float:left;box-sizing: border-box;padding: 10px 10px 10px 10px;font-size:12px;
+			}
+			.scheduler_list_2_1_style{
+				width:100%;height:33px;line-height:33px;
+			}
+			.scheduler_list_2_1_style1{
+				width:100%;height:33px;line-height:34px;
+			}
+			.scheduler_list_color{
+				color:#de6559;
+			}
+			.red_color{
+				color:#de6559;
+			}
+			.scheduler_list_3_1{
+				background-color:#4f5f6f;width:50%;height:50px;float:left;
+			}
+			.scheduler_list_3_2{
+				background-color:#de6559;width:50%;height:50px;float:left;
+			}
+			/* 알림 페이지 */
+			.notice_list{
+				width:100%;color:#4f5f6f;text-shadow:0 0 0 white;font-size:15px;text-align:center;
+			}
+			/* 레지스터 페이지 */
+			.register_select_style{
+				float:left;
+				position:absolute;
+				right:5px;
+				z-index:9999;
+				padding: 5px 5px 5px 10px; 
+				border-left: 1px solid gray !important;
+				margin: 8px 0 0 0;
+			}
+			.register_input_style{
+				-webkit-border-radius:1px;
+				-webkit-appearance:none;
+				float:left;
+				position:absolute;
+				width:60%;
+				right:5px;
+				z-index:9999;
+				padding: 5px 5px 5px 10px; 
+				border-left: 1px solid gray;
+				margin: 10px 0 0 0;
+			}
+			.register_wrap{
+				margin: 20px 10% 0 10%;
+			}
+			.pop_profile_wrap{
+				margin:20px 10% 0 10%;
+				width:80%;
+				font-size:14px;
+				color:#4f5f6f;
+			}
+			.profile_input_style{
+				-webkit-border-radius:1px;
+				-webkit-appearance:none;
+				float:left;
+				position:absolute;
+				width:60%;
+				right:5px;
+				z-index:9999;
+				padding: 5px 5px 5px 10px; 
+				border-left: 1px solid gray !important;
+				margin: 10px 0 0 0;
+				text-align:center;
+			}
+			.pop_mypage_wrap{
+				margin:20px 10% 0 10%;
+				width:80%;
+				font-size:14px;
+				color:#4f5f6f;
+			}
+			.pop_mypage_empty{
+				height:192px;
+			}
+			.pop_mypage_photo{
+				text-align:center; 
+				margin:40px 0 30px 0; 
+			}
+			.mypage_wrap{
+				height: 50px;
+				margin: 20px 10% 0 10%;
+			    color: white;
+				font-size: 18px;
+				font-weight: 400;
+				text-shadow: 0 0 0 white;
+			    line-height: 50px;
+			    text-align: center;
+			    position: relative;
+			}
+			.mypage_blut_text{
+				position:absolute;
+				width:100%;
+				z-index:9999;
+				color:white;
+				text-shadow:0 0 0 white;
+			}
+			.ceo_display{
+				display:none;
+			}
+			.text_join{
+				z-index:9999;font-size:100%;color:white;text-shadow:0 0 0 white;
+			}
+			/* 자리배치 */
+			.position_mark_down_a1 {position:absolute;   top:2.43%;   left:15.78%;   width:6.25%;}    
+			.position_mark_right_a2 {position:absolute;   top:19.45%;   left:1.72%;   width:8.13%;}    
+			.position_mark_right_a3 {position:absolute;   top:29.01%;   left:1.72%;   width:8.13%;}    
+			.position_mark_right_a4 {position:absolute;   top:38.09%;   left:1.72%;   width:8.13%;}   
+			.position_mark_right_a5 {position:absolute;   top:47.20%;   left:1.72%;   width:8.13%;}    
+			.position_mark_left_a6 {position:absolute;   top:19.45%;   left:19.38%;   width:8.13%;}    
+			.position_mark_left_a7 {position:absolute;   top:29.01%;   left:19.38%;   width:8.13%;}    
+			.position_mark_left_a8 {position:absolute;   top:38.09%;   left:19.38%;   width:8.13%;}    
+			.position_mark_left_a9 {position:absolute;   top:47.20%;   left:19.38%;   width:8.13%;}    
+			.position_mark_down_b1 {position:absolute;   top:2.43%;   left:32.66%;   width:6.25%;}    
+			.position_mark_right_b2 {position:absolute;   top:19.45%;   left:28.59%;   width:8.13%;}    
+			.position_mark_right_b3 {position:absolute;   top:29.01%;   left:28.44%;   width:8.13%;}    
+			.position_mark_right_b4 {position:absolute;   top:38.09%;   left:28.44%;   width:8.13%;}    
+			.position_mark_right_c1 {position:absolute;   top:66.10%;   left:1.72%;   width:8.13%;}    
+			.position_mark_right_c2 {position:absolute;   top:75.50%;   left:1.72%;   width:8.13%;}    
+			.position_mark_left_c3 {position:absolute;   top:66.10%;   left:19.38%;   width:8.13%;}    
+			.position_mark_left_c4 {position:absolute;   top:75.50%;   left:19.38%;   width:8.13%;}    
+			.position_mark_right_c5 {position:absolute;   top:87.47%;   left:6.88%;   width:8.13%;}    
+			.position_mark_down_d1 {position:absolute;   top:2.43%;   left:54.22%;   width:6.25%;}    
+			.position_mark_right_d2 {position:absolute;   top:21.72%;   left:43.75%;   width:8.13%;}    
+			.position_mark_right_d3 {position:absolute;   top:31.12%;   left:43.75%;   width:8.13%;}    
+			.position_mark_left_d4 {position:absolute;   top:21.72%;   left:62.66%;   width:8.13%;}    
+			.position_mark_left_d5 {position:absolute;   top:31.12%;   left:62.66%;   width:8.13%;}    
+			.position_mark_down_e1 {position:absolute;   top:11.51%;   left:82.34%;   width:6.25%;}    
+			.position_mark_down_e2 {position:absolute;   top:11.51%;   left:89.22%;   width:6.25%;}    
+			.position_mark_down_ceo {position:absolute;   top:67.26%;   left:48.28%;   width:6.25%;}     
+			.main_map_1 {position:absolute;   top:4.46%;   left:4.06%;   width:21.25%;}    
+			.main_map_2 {position:absolute;   top:4.46%;   left:26.25%;   width:17.50%;}    
+			.main_map_3 {position:absolute;   top:4.46%;   left:44.69%;   width:22.50%;}    
+			.main_map_4 {position:absolute;   top:4.46%;   left:80.00%;   width:15.63%;}    
+			.main_map_5 {position:absolute;   top:62.98%;   left:4.22%;   width:22.66%;}    
+			.main_map_6 {position:absolute;   top:64.30%;   left:46.09%;   width:12.03%;} 
+			#main_map_view_content{
+				margin: 100px 0 50px 0;
+			}
+			.map_view_position_ceo {position:absolute;   top:17.43%;   left:34.06%;   width:31.56%;}
+			.map_view_position_a1 {position:absolute;   top:4.64%;   left:40.94%;   width:31.56%;}    
+			.map_view_position_a2 {position:absolute;   top:34.28%;   left:3.28%;   width:31.56%;}    
+			.map_view_position_a3 {position:absolute;   top:50.00%;   left:3.28%;   width:31.56%;}    
+			.map_view_position_a4 {position:absolute;   top:65.57%;   left:3.28%;   width:31.56%;}    
+			.map_view_position_a5 {position:absolute;   top:81.29%;   left:3.28%;   width:31.56%;}    
+			.map_view_position_a6 {position:absolute;   top:34.28%;   left:64.69%;   width:31.56%;}    
+			.map_view_position_a7 {position:absolute;   top:50.00%;   left:64.69%;   width:31.56%;}    
+			.map_view_position_a8 {position:absolute;   top:65.57%;   left:64.69%;   width:31.56%;}    
+			.map_view_position_a9 {position:absolute;   top:81.29%;   left:64.69%;   width:31.56%;} 
+			.map_view_position_b1 {position:absolute;   top:4.64%;   left:43.75%;   width:31.56%;}    
+			.map_view_position_b2 {position:absolute;   top:34.28%;   left:22.03%;   width:31.56%;}    
+			.map_view_position_b3 {position:absolute;   top:50.00%;   left:22.03%;   width:31.56%;}    
+			.map_view_position_b4 {position:absolute;   top:65.57%;   left:22.03%;   width:31.56%;}    
+			.map_view_position_b5 {position:absolute;   top:81.29%;   left:22.03%;   width:31.56%;} 
+			.map_view_position_c1 {position:absolute;   top:23.31%;   left:3.28%;   width:31.56%;}    
+			.map_view_position_c2 {position:absolute;   top:39.84%;   left:3.28%;   width:31.56%;}    
+			.map_view_position_c3 {position:absolute;   top:23.31%;   left:64.69%;   width:31.56%;}   
+			.map_view_position_c4 {position:absolute;   top:39.84%;   left:64.69%;   width:31.56%;}    
+			.map_view_position_c5 {position:absolute;   top:71.18%;   left:41.09%;   width:31.56%;}
+			.map_view_position_d1 {position:absolute;   top:14.65%;   left:34.22%;   width:31.56%;}    
+			.map_view_position_d2 {position:absolute;   top:49.61%;   left:3.28%;   width:31.56%;}    
+			.map_view_position_d3 {position:absolute;   top:66.14%;   left:3.28%;   width:31.56%;}    
+			.map_view_position_d4 {position:absolute;   top:49.61%;   left:64.69%;   width:31.56%;}    
+			.map_view_position_d5 {position:absolute;   top:66.14%;   left:64.69%;   width:31.56%;}  
+			.map_view_position_e1 {position:absolute;   top:40.16%;   left:3.28%;   width:31.56%;}    
+		    .map_view_position_e2 {position:absolute;   top:40.16%;   left:64.69%;   width:31.56%;}  
+			.map_view_style{z-index:999;background-red;}
+			/* main_map_view 상자 */
+			.view_content_append{position:relative;}
+			.map_view_img{width:45%;height:100%;float:left;box-sizing: border-box;border: 2px solid #4f5f6f;}
+			.map_view_text_out{width:55%;height:100%;float:left;box-sizing: border-box;border-top: 2px solid #4f5f6f;border-right: 2px solid #4f5f6f;border-bottom: 2px solid #4f5f6f;text-align:center;font-size:80%;}
+			.map_view_text_in1{width:100%;height:50%;box-sizing: border-box;border-bottom:1px solid #4f5f6f;color:#4f5f6f;font-weight:bold;display:table;}
+			.map_view_text_in2{width:100%;height:50%;font-weight:bold;display:table;}
+			.map_view_text_in1_1{width:100%;height:100%;display:table-cell;vertical-align: middle;padding-top:3px;}
+			.map_view_text_in2_1{width:100%;height:100%;display:table-cell;vertical-align: middle;padding-top:3px;}
+			#profile_shadow{
+				background-color:black;
+				position: relative;
+				z-index: 99999;
+				display:none;
+			}
+			#profile_shadow_img{
+				position: absolute;
+				margin:auto;
+			}
+			.common_border{
+				box-sizing: border-box;
+				border: 1px solid #99a9b6;
+				border-radius: 5px;
+			}
+			.common_border_color{
+				box-sizing: border-box;
+				border: 1px solid #99a9b6;
+				border-radius: 5px;
+				background-color:#59c2e6;
+			}
+			.common_border1{
+				box-sizing: border-box;
+				border: 1px solid #99a9b6;
+				border-radius: 5px;
+				background-color:white;
+			}
+		</style>
+		<script>
+		//클릭속도 향상
+		window.addEventListener('load', function () {
+			FastClick.attach(document.body);
+			//로그인 인증 후 메인페이지로 바로 이동
+			if(localStorage.autoLogin=="on"){
+				main.id=localStorage.id
+				localStorage.myImg="http://int.udali.com/files/pic/"+main.id+".jpg";
+				$.mobile.changePage($("#main")); 
+			}
+		}, false);
+
+		$(function(){
+			$("#scheduler_content").height($(window).height())
+
+			//생일 라디오 
+			$("#pop_join_yang, #pop_join_hm").click(function(){
+				if($(this).attr("value")=="(양)"){
+					$("#pop_join_hm").attr("checked",false)
+				}else{
+					$("#pop_join_yang").attr("checked",false)
+				}
+			})
+
+			//생일 라디오 
+			$("#pop_modify_yang, #pop_modify_hm").click(function(){
+				if($(this).attr("value")=="(양)"){
+					$("#pop_modify_hm").attr("checked",false)
+				}else{
+					$("#pop_modify_yang").attr("checked",false)
+				}
+			})
+
+			//canvas 위치
+			$("#getCanvas, #getCanvas1, #getCanvas2").css({"left":$(window).width()/2-96,"top":52})
+
+			//main_map 위치 선정
+			$("#main_map_content").css({"width":$(window).width(),"height":$(window).height()});				
+			$("#main_map_view_content").css({"width":"100%","height":$(window).height()-150,"overflow":"hidden"});		
+			$("#main_map_view").css("overflow","hidden");		
+		})
+		</script>
+    </head>
+    <body>
+		<div data-role="page" id="index">
+			<!--<button onclick="window.location.assign('http://192.168.0.81:3000/index.html')">Reload</button>-->
+			<img class="index_logo" src="img/index_logo.gif">
+			<div class="index_id_wrap common_border">
+				<img class="index_id_icon" src="img/index_id_icon.gif">
+				<input class="index_input" placeholder="ID" id="Lid" data-role="none">
+			</div>
+			<div class="index_password_wrap common_border">
+				<img class="index_id_icon" src="img/index_password_icon.gif">
+				<input type="password" placeholder="PASSWORD" class="index_input" id="Lpw" data-role="none">
+			</div>
+			<div class="index_login_btn" onclick="login()">
+				<div class="login_text">로그인</div>
+				<img class="index_login_btn_img" src="img/blue_btn.gif">
+			</div>
+			<div class="index_find_icon">
+				<a href="#pop_find" class="index_find">사원 계정을 잊으셨나요?</a>
+			</div>
+			<a href="#pop_join"><div class="index_join_btn_wrap">
+				<div class="index_join_btn_text">
+					<img class="index_join_footer_logo" src="img/index_join_btn_logo.gif">
+					<span class="index_join_footer_text">가입하기</span>
+				</div>
+				<img class="index_join_btn" src="img/index_join_btn.gif">			
+			</div></a>
+		</div>
+
+		<div data-role="page" id="pop_find"> 
+			<div class="common_head">
+				<div class="common_head_content">
+					<span class="common_head_text">사원정보찾기</span>
+					<a href="#index"><img class="close_btn" src="img/close_btn.gif"></a>
+				</div>
+				<img class="common_top_bg" src="img/top_bg.gif">
+			</div>
+			<div class="find_id_wrap">
+				<span class="find_text">ID 찾기</span>
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">모바일</div>
+					<input class="find_input_style" id="m_num" placeholder="예)010-0000-0000" data-role="none">
+				</div>
+			</div>
+			<div class="common_btn" onclick="check('id')">
+				<span class="common_blut_text">확인</span>
+				<img class="common_blue_btn" src="img/blue_btn.gif">
+			</div>
+			<div class="find_id_wrap">
+				<span class="find_text">PASSWORD 찾기</span>
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">ID</div>
+					<input class="find_input_style" id="m_id" placeholder="ID" data-role="none">
+				</div>
+				<div class="find_input common_border">
+					<div class="find_id_mobile">모바일</div>
+					<input class="find_input_style" id="m_num2" placeholder="예)010-0000-0000" data-role="none">
+				</div>
+			</div>
+			<div class="common_btn" onclick="check('pw')">
+				<span class="common_blut_text">확인</span>
+				<img class="common_blue_btn" src="img/blue_btn.gif">
+			</div>
+		</div>
+
+		<div data-role="page" id="pop_join">
+			<div class="common_head">
+				<div class="common_head_content">
+					<span class="common_head_text">사원가입</span>
+					<a href="#index"><img class="close_btn" src="img/close_btn.gif"></a>
+				</div>
+				<img class="common_top_bg" src="img/top_bg.gif">
+			</div>
+			<div class="pop_join_photo">
+				<div class="pop_join_empty">						
+					<img id="pop_join_user_picture" src="img/basicPhoto.gif">		
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">ID</div>
+					<input class="profile_input_style" id="pop_join_id" data-role="none">
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">비밀번호</div>
+					<input class="profile_input_style" type="password" id="pop_join_pw" data-role="none">
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">비밀번호 확인</div>
+					<input class="profile_input_style" type="password" id="pop_join_pw2" data-role="none">
+				</div>
+			</div>
+			<div class="register_wrap" style="height:50px;">
+				<div style="height:50px;width:28%;float:left;" class="common_border">
+					<input data-role="none" onkeyup="koreanCheck(event)" placeholder="email" style="height:30px;width:19%;position:absolute;z-index:999;margin:9px 0 0 5px;" id="pop_join_email">
+				</div>
+				<div style="height:50px;width:7%;float:left;line-height:50px;text-align:center;font-size:14px;">
+					@
+				</div>
+				<div style="height:50px;width:30%;float:left;margin-right:2%;" class="common_border">
+					<input data-role="none" style="height:30px;width:21%;position:absolute;z-index:999;margin:9px 0 0 5px;" id="pop_join_email_add" placeholder="address" type="text" readonly>
+				</div>
+				<div style="height:50px;width:33%;float:left;" class="common_border">
+					<select class="pop_join_email_select" data-role="none" style="height:30px;width:24%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+						<option value="none" selected="selected">선 택</option>
+						<option value="naver.com">naver.com</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="daum.net">daum.net</option>
+						<option value="hanmail.net">hanmail.net</option>
+						<option value="nate.com">nate.com</option>
+						<option value="chol.com">chol.com</option>
+						<option value="hotmail.com">hotmail.com</option>
+						<option value="yahoo.co.kr">yahoo.co.kr</option>
+						<option value="in_self">직접입력</option>
+					</select>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">이름</div>
+					<input class="profile_input_style" id="pop_join_name" data-role="none">
+				</div>
+			</div>
+			<div class="register_wrap" style="height:50px;">
+				<div style="height:50px;width:40%;float:left;" class="common_border">
+					<select class="pop_join_call_num" data-role="none" style="height:30px;width:30%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+						<option value="none" selected="selected">연락처</option>
+						<option value="010">010</option>
+						<option value="016">016</option>
+						<option value="017">017</option>
+						<option value="018">018</option>
+						<option value="019">019</option>
+					</select>
+				</div>
+				<div style="height:50px;width:5%;float:left;line-height:50px;text-align:center;">-</div>
+				<div style="height:50px;width:25%;float:left;" class="common_border">
+					<input data-role="none" style="height:30px;width:18%;position:absolute;z-index:999;margin:9px 0 0 5px;" id="pop_join_call_v1" maxlength="4" onkeydown="showKeyCode(event,this)">
+				</div>
+				<div style="height:50px;width:5%;float:left;line-height:50px;text-align:center;">-</div>
+				<div style="height:50px;width:25%;float:left;" class="common_border">
+					<input data-role="none" style="height:30px;width:17%;position:absolute;z-index:999;margin:9px 0 0 5px;" id="pop_join_call_v2" maxlength="4" onkeydown="showKeyCode(event,this)">
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">사내 전화번호</div>
+					<input class="profile_input_style" id="pop_join_p_num" data-role="none" maxlength="4" placeholder="사내 개인전화 끝 4자리" onkeydown="showKeyCode(event,this)">
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">네이트온 ID</div>
+					<input class="profile_input_style" id="pop_join_nate" data-role="none">
+				</div>
+			</div>
+			<div class="register_wrap" style="height:50px;">
+				<div style="height:50px;width:26%;float:left;" class="common_border">
+					<select id="pop_join_month" data-role="none" style="height:30px;width:19%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+					  <option value="1">1월</option>
+					  <option value="2">2월</option>
+					  <option value="3">3월</option>
+					  <option value="4">4월</option>
+					  <option value="5">5월</option>
+					  <option value="6">6월</option>
+					  <option value="7">7월</option>
+					  <option value="8">8월</option>
+					  <option value="9">9월</option>
+					  <option value="10">10월</option>
+					  <option value="11">11월</option>
+					  <option value="12">12월</option>
+					</select>
+				</div>
+				<div style="height:50px;width:3%;float:left;line-height:50px;text-align:center;"></div>
+				<div style="height:50px;width:26%;float:left;" class="common_border">
+					<select id="pop_join_day" data-role="none" style="height:30px;width:19%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+					  <option value="1">1일</option>
+					  <option value="2">2일</option>
+					  <option value="3">3일</option>
+					  <option value="4">4일</option>
+					  <option value="5">5일</option>
+					  <option value="6">6일</option>
+					  <option value="7">7일</option>
+					  <option value="8">8일</option>
+					  <option value="9">9일</option>
+					  <option value="10">10일</option>
+					  <option value="11">11일</option>
+					  <option value="12">12일</option>
+					  <option value="13">13일</option>
+					  <option value="14">14일</option>
+					  <option value="15">15일</option>
+					  <option value="16">16일</option>
+					  <option value="17">17일</option>
+					  <option value="18">18일</option>
+					  <option value="19">19일</option>
+					  <option value="20">20일</option>
+					  <option value="21">21일</option>
+					  <option value="22">22일</option>
+					  <option value="23">23일</option>
+					  <option value="24">24일</option>
+					  <option value="25">25일</option>
+					  <option value="26">26일</option>
+					  <option value="27">27일</option>
+					  <option value="28">28일</option>
+					  <option value="29">29일</option>
+					  <option value="30">30일</option>
+					  <option value="31">31일</option>
+					</select>
+				</div>
+				<div style="height:50px;width:45%;float:left;text-align:center;line-height:50px;">
+					<span>양력&nbsp;<input data-role="none" type="radio" id="pop_join_yang" value="(양)"></span>&nbsp;&nbsp;
+					<span>음력&nbsp;<input data-role="none" type="radio" id="pop_join_hm" value="(음)"></span>
+					
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">직급</div>
+					<select id="job_grade" class="profile_input_style" data-role="none">
+						  <option value="직급" selected="selected">직급</option>
+						  <option value="인턴">인턴</option>
+						  <option value="사원">사원</option>
+						  <option value="주임">주임</option>
+						  <option value="대리">대리</option>
+						  <option value="과장">과장</option>
+						  <option value="차장">차장</option>
+						  <option value="팀장">팀장</option>
+						  <option value="실장">실장</option>
+						  <option value="부장">부장</option>
+						  <option value="본부장">본부장</option>
+						  <option value="국장">국장</option>
+						  <option value="전무">전무</option>
+						  <option value="이사">이사</option>
+						  <option value="국장">국장</option>
+						  <option value="부대표">부대표</option>
+						  <option value="대표">대표</option>			  
+					</select>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">소속부서</div>
+					<select id="department" class="profile_input_style" data-role="none">
+						  <option value="소속부서" selected="selected">소속부서</option>
+						  <option value="0">대표</option>
+						  <option value="1">경영지원팀</option>
+						  <option value="2">기획1팀</option>
+						  <option value="3">기획2팀</option>
+						  <option value="4">기획3팀</option>
+						  <option value="5">기획4팀</option>
+						  <option value="15">남양 UX팀</option>
+						  <option value="14">남양 개발팀</option>
+						  <option value="13">남양 기획팀</option>
+						  <option value="16">남양 디자인팀</option>
+						  <option value="11">남양 아이팀</option>
+						  <option value="7">제작팀</option>
+						  <option value="9">페이스북팀</option>
+						  <option value="8">프로그램팀</option>
+					</select>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">상태</div>
+					<select id="job_state" class="profile_input_style" data-role="none">
+						  <option value="상태" selected="selected">상태</option>
+						  <option value="1">대기</option>
+						  <option value="2">재직</option>
+						  <option value="3">퇴사</option>
+					</select>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">현재상태</div>
+					<select id="work_state" class="profile_input_style" data-role="none">
+						  <option value="현재근무상태">현재근무상태</option>
+						  <option value="1">근무중</option>
+						  <option value="2">외근중</option>
+						  <option value="3">야근중</option>
+						  <option value="4">퇴근</option>
+						  <option value="5">휴가</option>
+					</select>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">나의 한마디</div>
+					<input class="profile_input_style" id="pop_join_toking" data-role="none">
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				오늘 나의 컨디션
+				<div class="profile_condition" style="width:100%;height:30px;margin-top:5px;">
+					<div id="join_condition1" onclick="joboxClick(1)" class="condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="join_condition2" onclick="joboxClick(2)" class="condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="join_condition3" onclick="joboxClick(3)" class="condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="join_condition4" onclick="joboxClick(4)" class="condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="join_condition5" onclick="joboxClick(5)" class="condition_init common_border" style="width:calc(20% - 4px);float:left;height:30px;"></div>
+				</div>
+			</div>
+			<div style="width:100%;background-color:#90a4b4;">
+				<div style="text-align:center;margin-top:30px;padding-bottom: 10px;">
+					<div style="padding:10px 0;color:white;font-size:15px;text-shadow:0 0 0 white;">[사무실내 내자리 선택]</div>
+					<div style="position:relative;">
+						<div class="position_mark_down_a1 common_pos_down" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A1
+						</div>
+						<div class="position_mark_right_a2 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A2
+						</div>
+						<div class="position_mark_right_a3 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A3
+						</div>
+						<div class="position_mark_right_a4 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A4
+						</div>
+						<div class="position_mark_right_a5 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A5
+						</div>
+						<div class="position_mark_left_a6 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A6
+						</div>
+						<div class="position_mark_left_a7 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A7
+						</div>
+						<div class="position_mark_left_a8 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A8
+						</div>
+						<div class="position_mark_left_a9 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A9
+						</div>
+						<div class="position_mark_down_b1 common_pos_down" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							B1
+						</div>
+						<div class="position_mark_right_b2 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							B2
+						</div>
+						<div class="position_mark_right_b3 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							B3
+						</div>
+						<div class="position_mark_right_b4 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							B4
+						</div>
+						<div class="position_mark_right_c1 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							C1
+						</div>
+						<div class="position_mark_right_c2 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							C2
+						</div>
+						<div class="position_mark_left_c3 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							C3
+						</div>
+						<div class="position_mark_left_c4 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							C4
+						</div>
+						<div class="position_mark_right_c5 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							C5
+						</div>
+						<div class="position_mark_down_d1 common_pos_down" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							D1
+						</div>
+						<div class="position_mark_right_d2 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							D2
+						</div>
+						<div class="position_mark_right_d3 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							D3
+						</div>
+						<div class="position_mark_left_d4 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							D4
+						</div>
+						<div class="position_mark_left_d5 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							D5
+						</div>
+						<div class="position_mark_down_e1 common_pos_down" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							E1
+						</div>
+						<div class="position_mark_down_e2 common_pos_down" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							E2
+						</div>
+						<div class="position_mark_down_ceo common_pos_down" style="z-index:1;font-size:50%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							CEO
+						</div>
+						<img src="img/position_mark_down_off.png" class="position_mark_init position_mark_down_a1" id="position_mark_a1">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_a2" id="position_mark_a2">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_a3" id="position_mark_a3">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_a4" id="position_mark_a4">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_a5" id="position_mark_a5">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_a6" id="position_mark_a6">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_a7" id="position_mark_a7">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_a8" id="position_mark_a8">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_a9" id="position_mark_a9">
+						<img src="img/position_mark_down_off.png" class="position_mark_init position_mark_down_b1" id="position_mark_b1">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_b2" id="position_mark_b2">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_b3" id="position_mark_b3">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_b4" id="position_mark_b4">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_c1" id="position_mark_c1">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_c2" id="position_mark_c2">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_c3" id="position_mark_c3">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_c4" id="position_mark_c4">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_c5" id="position_mark_c5">
+						<img src="img/position_mark_down_off.png" class="position_mark_init position_mark_down_d1" id="position_mark_d1">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_d2" id="position_mark_d2">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_d3" id="position_mark_d3">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_d4" id="position_mark_d4">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_d5" id="position_mark_d5">
+						<img src="img/position_mark_down_off.png" class="position_mark_init position_mark_down_e1" id="position_mark_e1">
+						<img src="img/position_mark_down_off.png" class="position_mark_init position_mark_down_e2" id="position_mark_e2">
+						<img src="img/position_mark_down_off.png" class="position_mark_init position_mark_down_ceo" id="position_mark_ceo">
+						<img src="img/join_position_bg.gif" style="width:100%;">
+					</div>
+					<div class="pop_profile_wrap" style="margin-bottom:10px;">
+						<div class="find_input1 common_border1">
+							<div class="find_id_mobile">내 위치</div>
+							<select id="join_myposition" class="profile_input_style" data-role="none">
+								  <option value="현재근무상태">내 위치</option>
+								  <option value="a1">A1</option>
+								  <option value="a2">A2</option>
+								  <option value="a3">A3</option>
+								  <option value="a4">A4</option>
+								  <option value="a5">A5</option>
+								  <option value="a6">A6</option>
+								  <option value="a7">A7</option>
+								  <option value="a8">A8</option>
+								  <option value="a9">A9</option>
+								  <option value="b1">B1</option>
+								  <option value="b2">B2</option>
+								  <option value="b3">B3</option>
+								  <option value="b4">B4</option>
+								  <option value="c1">C1</option>
+								  <option value="c2">C2</option>
+								  <option value="c3">C3</option>
+								  <option value="c4">C4</option>
+								  <option value="c5">C5</option>
+								  <option value="d1">D1</option>
+								  <option value="d2">D2</option>
+								  <option value="d3">D3</option>
+								  <option value="d4">D4</option>
+								  <option value="d5">D5</option>
+								  <option value="e1">E1</option>
+								  <option value="e2">E2</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="index_login_btn" onclick="join()">
+				<div class="login_text">사원가입</div>
+				<img class="index_login_btn_img" src="img/blue_btn.gif">
+			</div>
+
+			<!--<div id="pop_find_head" class="pop_find_font">
+				<h1>사원가입</h1>
+				<a href="#index">
+					<img id="close_btn" src="img/close_btn.gif">
+				</a>
+			</div>
+			<div class="pop_join_photo">
+				<div class="pop_join_empty">						
+					<img id="pop_join_user_picture" src="img/basicPhoto.gif">		
+				</div>
+				<canvas id="getCanvas"></canvas>
+			</div>
+			<div id="pop_join_content">
+				<div class="style_margin0"><input maxlength="15" id="pop_join_id" placeholder="id"/></div>
+				<div class="style_margin0"><input type="password" id="pop_join_pw" placeholder="password"/></div>
+				<div class="style_margin0"><input type="password" id="pop_join_pw2" placeholder="password 확인"/></div>
+				<div class="style_margin0 pop_join_email_wrap">
+					<div class="pop_join_email_id">
+						<input id="pop_join_email" onkeyup="koreanCheck(event)" placeholder="email"/>
+					</div>
+					<p class="pop_join_email_at">@</p>
+					<div class="pop_join_email_add_wrap">
+						<input class="pop_join_email_add" placeholder="address" type="text" readonly/>
+					</div>
+					<div class="pop_join_email_select_wrap">
+						<select class="pop_join_email_select">
+							<option value="none" selected="selected">선 택</option>
+							<option value="naver.com">naver.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="daum.net">daum.net</option>
+							<option value="hanmail.net">hanmail.net</option>
+							<option value="nate.com">nate.com</option>
+							<option value="chol.com">chol.com</option>
+							<option value="hotmail.com">hotmail.com</option>
+							<option value="yahoo.co.kr">yahoo.co.kr</option>
+							<option value="in_self">직접입력</option>
+						</select>
+					</div>
+				</div>
+				<div class="style_margin0 clear_both"><input id="pop_join_name" placeholder="이름"/></div>
+				<div class="style_margin0 pop_join_call_info">
+					<select class="pop_join_call_num">
+						<option value="none" selected="selected">연락처</option>
+						<option value="010">010</option>
+						<option value="016">016</option>
+						<option value="017">017</option>
+						<option value="018">018</option>
+						<option value="019">019</option>
+					</select>
+					
+					<span class="pop_join_front_number">-</span>
+					<input id="pop_join_call_v1" type="text" maxlength="4" onkeydown="showKeyCode(event,this)">
+					<span class="pop_join_back_number">-</span>
+					<input id="pop_join_call_v2" type="text" maxlength="4" onkeydown="showKeyCode(event,this)">
+				</div>
+				<div class="style_margin0 clear_both"><input id="pop_join_p_num" type="text" maxlength="4" placeholder="사내 개인전화 끝 4자리" onkeydown="showKeyCode(event,this)"/></div>
+				<div class="style_margin0"><input id="pop_join_nate" placeholder="nate on 아이디 예)hong"/></div>
+				<div class="style_margin0 pop_join_birth_info">
+					<select id="pop_join_month">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					  <option value="9">9</option>
+					  <option value="10">10</option>
+					  <option value="11">11</option>
+					  <option value="12">12</option>
+					</select>
+					<span class="pop_join_font1 pop_join_days">
+						월
+					</span>
+					<select id="pop_join_day">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					  <option value="9">9</option>
+					  <option value="10">10</option>
+					  <option value="11">11</option>
+					  <option value="12">12</option>
+					  <option value="13">13</option>
+					  <option value="14">14</option>
+					  <option value="15">15</option>
+					  <option value="16">16</option>
+					  <option value="17">17</option>
+					  <option value="18">18</option>
+					  <option value="19">19</option>
+					  <option value="20">20</option>
+					  <option value="21">21</option>
+					  <option value="22">22</option>
+					  <option value="23">23</option>
+					  <option value="24">24</option>
+					  <option value="25">25</option>
+					  <option value="26">26</option>
+					  <option value="27">27</option>
+					  <option value="28">28</option>
+					  <option value="29">29</option>
+					  <option value="30">30</option>
+					  <option value="31">31</option>
+					</select>
+					<span  class="pop_join_font1 pop_join_days3">
+						일
+					</span>
+					<span class="pop_join_font1 pop_join_days1">양력</span>
+					<input data-role="none" type="radio" id="pop_join_yang" value="(양)">
+					<span class="pop_join_font1 pop_join_days1">음력</span>
+					<input data-role="none" type="radio" id="pop_join_hm" value="(음)">
+				</div>
+				<div class="pop_join_select_style clear_both">
+
+				</div>
+				<div class="pop_join_select_style">
+					<select id="department" name="소속부서" value="소속부서">
+						  <option value="소속부서" selected="selected">소속부서</option>
+						  <option value="0">대표</option>
+						  <option value="1">경영지원팀</option>
+						  <option value="2">기획1팀</option>
+						  <option value="3">기획2팀</option>
+						  <option value="4">기획3팀</option>
+						  <option value="5">기획4팀</option>
+						  <option value="15">남양 UX팀</option>
+						  <option value="14">남양 개발팀</option>
+						  <option value="13">남양 기획팀</option>
+						  <option value="16">남양 디자인팀</option>
+						  <option value="11">남양 아이팀</option>
+						  <option value="7">제작팀</option>
+						  <option value="9">페이스북팀</option>
+						  <option value="8">프로그램팀</option>
+					</select>
+				</div>
+				<div class="pop_join_select_style">
+					<select id="job_state">
+						  <option value="상태" selected="selected">상태</option>
+						  <option value="1">대기</option>
+						  <option value="2">재직</option>
+						  <option value="3">퇴사</option>
+					</select>
+				</div>
+				<div class="pop_join_select_style">
+					<select id="work_state">
+						  <option value="현재근무상태" selected="selected">현재근무상태</option>
+						  <option value="1">근무중</option>
+						  <option value="2">외근중</option>
+						  <option value="3">야근중</option>
+						  <option value="4">퇴근</option>
+						  <option value="5">휴가</option>
+					</select>
+				</div>
+				<div class="style_margin0"><input id="pop_join_toking" placeholder="나의 한마디"/></div>
+				<div>
+					<div class="pop_find_font style_margin1">오늘 나의 컨디션</div>
+					<div class="style_margin0 pop_join_div">
+						<div class="pop_join_box pop_join_box_width" id="box1" onclick="boxClick(1)"></div>
+						<div class="pop_join_box pop_join_box_width" id="box2" onclick="boxClick(2)"></div>
+						<div class="pop_join_box pop_join_box_width" id="box3" onclick="boxClick(3)"></div>
+						<div class="pop_join_box pop_join_box_width" id="box4" onclick="boxClick(4)"></div>
+						<div class="pop_join_box pop_join_box_width" id="box5" onclick="boxClick(5)"></div>
+						<div class="pop_join_box pop_join_box_width" id="box6" onclick="boxClick(6)"></div>
+						<div class="pop_join_box pop_join_box_width" id="box7" onclick="boxClick(7)"></div>
+						<div class="pop_join_Lbox pop_join_box_width" id="box8" onclick="boxClick(8)"></div>
+					</div>
+				</div>
+				<div class="pop_find_chair">
+					<div class="pop_find_font style_margin1">사무실내 내자리 선택</div>
+					<div id="pop_find_chair_div">
+						<div class="pop_find_chair_sz pop_find_prod">
+							<div class="pop_join_font join_chair1">제작팀</div>
+							<img class="pop_join_box_style prod_box1" onclick="chairClick(this)" id="chairCount1" src="img/check_off.png">
+							<img class="pop_join_box_style prod_box2" onclick="chairClick(this)" id="chairCount2" src="img/check_off.png">
+							<img class="pop_join_box_style prod_box3" onclick="chairClick(this)" id="chairCount3" src="img/check_off.png">
+							<img class="pop_join_box_style prod_box4" onclick="chairClick(this)" id="chairCount4" src="img/check_off.png">
+							<img class="pop_join_box_style prod_box5" onclick="chairClick(this)" id="chairCount5" src="img/check_off.png">
+							<div class="pop_find_prod_suv pop_find_chair_sz">
+								<div class="pop_find_prod_v pop_join_font">탕비실</div>
+							</div>
+						</div>
+						<div class="pop_find_chair_sz pop_find_plan">
+							<div class="pop_join_font join_chair2">기획팀</div>
+							<img class="pop_join_box_style plan_box1" onclick="chairClick(this)" id="chairCount6" src="img/check_off.png">
+							<img class="pop_join_box_style plan_box2" onclick="chairClick(this)" id="chairCount7" src="img/check_off.png">
+							<img class="pop_join_box_style plan_box3" onclick="chairClick(this)" id="chairCount8" src="img/check_off.png">
+							<img class="pop_join_box_style plan_box4" onclick="chairClick(this)" id="chairCount9" src="img/check_off.png">
+							<img class="pop_join_box_style plan_box5" onclick="chairClick(this)" id="chairCount10" src="img/check_off.png">
+							<img class="pop_join_box_style plan_box6" onclick="chairClick(this)" id="chairCount11" src="img/check_off.png">
+							<img class="pop_join_box_style plan_box7" onclick="chairClick(this)" id="chairCount12" src="img/check_off.png">
+							<img class="pop_join_box_style plan_box8" onclick="chairClick(this)" id="chairCount13" src="img/check_off.png">
+							<img class="pop_join_box_style plan_box9" onclick="chairClick(this)" id="chairCount14" src="img/check_off.png">
+							<img class="pop_join_box_style plan_box10" onclick="chairClick(this)" id="chairCount15" src="img/check_off.png">
+							<img class="pop_join_box_style plan_box11" onclick="chairClick(this)" id="chairCount16" src="img/check_off.png">
+							<img class="pop_join_box_style plan_box12" onclick="chairClick(this)" id="chairCount17" src="img/check_off.png">
+							<img class="pop_join_box_style plan_box13" onclick="chairClick(this)" id="chairCount18" src="img/check_off.png">
+						</div>
+						<div class="pop_find_chair_sz pop_find_pres">
+							<div class="pop_join_font join_chair5">대표실</div>
+							<img class="pop_join_box_style pres_box1" onclick="chairClick(this)" id="chairCount19" src="img/check_off.png">
+						</div>
+						<div class="pop_find_chair_sz pop_find_movi">
+							<div class="pop_join_font join_chair3">영상팀</div>
+							<img class="pop_join_box_style movi_box1" onclick="chairClick(this)" id="chairCount20" src="img/check_off.png">
+							<img class="pop_join_box_style movi_box2" onclick="chairClick(this)" id="chairCount21" src="img/check_off.png">
+							<img class="pop_join_box_style movi_box3" onclick="chairClick(this)" id="chairCount22" src="img/check_off.png">
+							<img class="pop_join_box_style movi_box4" onclick="chairClick(this)" id="chairCount23" src="img/check_off.png">
+							<img class="pop_join_box_style movi_box5" onclick="chairClick(this)" id="chairCount24" src="img/check_off.png">
+						</div>
+						<div class="pop_find_chair_sz pop_find_meet">
+							<div class="pop_join_font">대회의실</div>
+						</div>
+						<div class="pop_find_chair_sz pop_find_mana">
+							<div class="pop_join_font join_chair4 chairClick">경영팀</div>
+							<img class="pop_join_box_style mana_box1" onclick="chairClick(this)" id="chairCount25" src="img/check_off.png">
+							<img class="pop_join_box_style mana_box2" onclick="chairClick(this)" id="chairCount26" src="img/check_off.png">
+						</div>
+						<div class="pop_find_chair_sz pop_find_mtoil">
+							<div class="pop_join_font">남화장실</div>
+						</div>
+						<div class="pop_find_chair_sz pop_find_wtoil">
+							<div class="pop_join_font">여화장실</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="pop_join_com">
+				<div class="style_margin2">
+					<button class="pop_join_btn"  onclick="join()">사원가입</button>
+				</div>
+			</div>-->
+		</div>
+
+		<div data-role="page" id="main" style="background-color:#90a4b4;">
+			<!--<div id="loading">
+				<img id="loading_img" src="img/loading.gif">
+			</div>-->
+			<div class="main_head">
+				<a href="#pop_mypage"><img class="main_modify_icon" src="img/main_modify_icon.gif"></a>
+				<img class="main_logo_icon" src="img/main_logo_icon.gif">
+				<a href="#main_map"><img class="main_mainMap_icon" src="img/main_mainMap_icon.gif"></a>
+				<img class="main_head_bg" src="img/main_head_bg.gif">
+			</div>
+			<div id="main_content">
+			</div>
+			<div class="main_footer">
+				<div class="main_footer_icons">
+					<a href="javascript:alert('준비중입니다.');"><div class="main_footer_icons_style"><img src="img/game.gif" width="37px"></div></a>
+					<!--<a href="#pop_choice"><div class="main_footer_icons_style"><img src="img/game.gif" width="37px"></div></a>-->
+					<a href="#pop_notice"><div class="main_footer_icons_style"><img src="img/notice.gif" width="37px"></div></a>
+					<a href="#pop_scheduler"><div class="main_footer_icons_style"><img src="img/scheduler.gif" width="37px;"></div></a>
+					<a href="#main"><div class="main_footer_icons_style1"><img src="img/home.gif" width="37px"></div></a>
+				</div>		
+			</div>
+		</div>
+
+		<div data-role="page" id="pop_mypage">
+			<div class="common_head">
+				<div class="common_head_content">
+					<span class="common_head_text">내페이지</span>
+					<a href="#main"><img class="close_btn" src="img/close_btn.gif"></a>
+				</div>
+				<img class="common_top_bg" src="img/top_bg.gif">
+			</div>
+			<div class="pop_mypage_photo">
+				<div class="pop_join_photo">
+					<div class="pop_join_empty">						
+						<img id="pop_mypage_user_picture" src="img/basicPhoto.gif">		
+					</div>
+				</div>
+			</div>
+			<div class="mypage_wrap ceo_display">
+				<a href="#pop_workDaily"><span class="mypage_blut_text">업무보고하기 CEO</span></a>
+				<!--<img src="img/ceo_icon.gif">-->
+				<img class="common_blue_btn" src="img/blue_btn.gif">
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">현재상태</div>
+					<select id="pop_mypage_job_workState" class="profile_input_style" data-role="none">
+						  <option value="현재근무상태">현재근무상태</option>
+						  <option value="1">근무중</option>
+						  <option value="2">외근중</option>
+						  <option value="3">야근중</option>
+						  <option value="4">퇴근</option>
+						  <option value="5">휴가</option>
+					</select>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">나의 한마디</div>
+					<input class="profile_input_style" id="pop_mypage_toking" data-role="none">
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				오늘 나의 컨디션
+				<div class="profile_condition" style="width:100%;height:30px;margin-top:5px;">
+					<div id="mypage_condition1" onclick="myboxClick(1)" class="mypage_condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="mypage_condition2" onclick="myboxClick(2)" class="mypage_condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="mypage_condition3" onclick="myboxClick(3)" class="mypage_condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="mypage_condition4" onclick="myboxClick(4)" class="mypage_condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="mypage_condition5" onclick="myboxClick(5)" class="mypage_condition_init common_border" style="width:calc(20% - 4px);float:left;height:30px;"></div>
+				</div>
+			</div>
+			<div class="register_wrap" onclick="save()">
+				<span class="common_blut_text">내 상태 저장하기</span>
+				<img class="common_blue_btn" src="img/blue_btn.gif">
+			</div>
+			<a href="#pop_modify"><div class="register_wrap">
+				<span class="common_blut_text">내 사원 정보 수정하기</span>
+				<img class="common_blue_btn" src="img/gray_btn.gif">
+			</div></a>
+
+
+			<!--<div class="pop_mypage_photo">
+				<div class="pop_mypage_empty"></div>
+				<canvas id="getCanvas1" style="display:none;" height="192" width="192"></canvas>
+			</div>
+			<div id="pop_mypage_content">
+				<div class="pop_mypage_ceo_btn">
+					<div class="style_margin2">
+						<a href="#pop_workDaily"><button class="pop_mypage_ceo">업무보고보기	(ceo)</button></a>
+					</div>
+				</div>
+				<div class="pop_mypage_select_style">
+					<select id="pop_mypage_job_workState">
+						  <option value="현재근무상태">현재근무상태</option>
+						  <option value="1">근무중</option>
+						  <option value="2">외근중</option>
+						  <option value="3">야근중</option>
+						  <option value="4">퇴근</option>
+						  <option value="5">휴가</option>
+					</select>
+				</div>
+				<div class="style_margin0"><input id="pop_mypage_toking" placeholder="나의 한마디"/></div>
+				<div>
+					<div class="pop_mypage_font style_margin1">오늘 나의 컨디션</div>
+					<div class="style_margin0 pop_mypage_div">
+						<div class="pop_mypage_box pop_mypage_box_width" id="mpbox1" onclick="mpboxClick(1)"></div>
+						<div class="pop_mypage_box pop_mypage_box_width" id="mpbox2" onclick="mpboxClick(2)"></div>
+						<div class="pop_mypage_box pop_mypage_box_width" id="mpbox3" onclick="mpboxClick(3)"></div>
+						<div class="pop_mypage_box pop_mypage_box_width" id="mpbox4" onclick="mpboxClick(4)"></div>
+						<div class="pop_mypage_box pop_mypage_box_width" id="mpbox5" onclick="mpboxClick(5)"></div>
+						<div class="pop_mypage_box pop_mypage_box_width" id="mpbox6" onclick="mpboxClick(6)"></div>
+						<div class="pop_mypage_box pop_mypage_box_width" id="mpbox7" onclick="mpboxClick(7)"></div>
+						<div class="pop_mypage_Lbox pop_mypage_box_width" id="mpbox8" onclick="mpboxClick(8)"></div>
+					</div>
+				</div>
+			</div>
+			<div id="pop_join_com">
+				<div class="style_margin2">
+					<button class="pop_mypage_save_btn"  onclick="save()">내 상태 저장하기</button>
+				</div>
+			</div>
+			<div id="pop_mypage_com">
+				<div class="style_margin2">
+					<a href="#pop_modify"><button class="pop_mypage_modify_btn">내 사원정보 수정하기</button></a>
+				</div>
+			</div>-->
+		</div>
+
+		<div data-role="page" id="pop_modify">
+			<div class="common_head">
+				<div class="common_head_content">
+					<span class="common_head_text">사원정보수정</span>
+					<a href="#pop_mypage"><img class="close_btn" src="img/close_btn.gif"></a>
+				</div>
+				<img class="common_top_bg" src="img/top_bg.gif">
+			</div>
+			<div class="pop_join_photo">
+				<div class="pop_join_empty">						
+					<img id="pop_modify_user_picture" src="img/basicPhoto.gif">		
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">ID</div>
+					<input class="profile_input_style" id="pop_modify_id" readonly data-role="none">
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">비밀번호</div>
+					<input class="profile_input_style" type="password" id="pop_modify_pw" data-role="none">
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">비밀번호 확인</div>
+					<input class="profile_input_style" type="password" id="pop_modify_pw2" data-role="none">
+				</div>
+			</div>
+			<div class="register_wrap" style="height:50px;">
+				<div style="height:50px;width:28%;float:left;" class="common_border">
+					<input data-role="none" onkeyup="koreanCheck(event)" placeholder="email" style="height:30px;width:19%;position:absolute;z-index:999;margin:9px 0 0 5px;" id="pop_modify_email">
+				</div>
+				<div style="height:50px;width:7%;float:left;line-height:50px;text-align:center;font-size:14px;">
+					@
+				</div>
+				<div style="height:50px;width:30%;float:left;margin-right:2%;" class="common_border">
+					<input data-role="none" style="height:30px;width:21%;position:absolute;z-index:999;margin:9px 0 0 5px;" id="pop_modify_email_add" placeholder="address" type="text" readonly>
+				</div>
+				<div style="height:50px;width:33%;float:left;" class="common_border">
+					<select class="pop_modify_email_select" data-role="none" style="height:30px;width:24%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+						<option value="none" selected="selected">선 택</option>
+						<option value="naver.com">naver.com</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="daum.net">daum.net</option>
+						<option value="hanmail.net">hanmail.net</option>
+						<option value="nate.com">nate.com</option>
+						<option value="chol.com">chol.com</option>
+						<option value="hotmail.com">hotmail.com</option>
+						<option value="yahoo.co.kr">yahoo.co.kr</option>
+						<option value="in_self">직접입력</option>
+					</select>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">이름</div>
+					<input class="profile_input_style" id="pop_modify_name" data-role="none">
+				</div>
+			</div>
+			<div class="register_wrap" style="height:50px;">
+				<div style="height:50px;width:40%;float:left;" class="common_border">
+					<select class="pop_modify_call_num" data-role="none" style="height:30px;width:30%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+						<option value="none" selected="selected">연락처</option>
+						<option value="010">010</option>
+						<option value="016">016</option>
+						<option value="017">017</option>
+						<option value="018">018</option>
+						<option value="019">019</option>
+					</select>
+				</div>
+				<div style="height:50px;width:5%;float:left;line-height:50px;text-align:center;">-</div>
+				<div style="height:50px;width:25%;float:left;" class="common_border">
+					<input data-role="none" style="height:30px;width:18%;position:absolute;z-index:999;margin:9px 0 0 5px;" id="pop_modify_call_v1" maxlength="4" onkeydown="showKeyCode(event,this)">
+				</div>
+				<div style="height:50px;width:5%;float:left;line-height:50px;text-align:center;">-</div>
+				<div style="height:50px;width:25%;float:left;" class="common_border">
+					<input data-role="none" style="height:30px;width:17%;position:absolute;z-index:999;margin:9px 0 0 5px;" id="pop_modify_call_v2" maxlength="4" onkeydown="showKeyCode(event,this)">
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">사내 전화번호</div>
+					<input class="profile_input_style" id="pop_modify_p_num" data-role="none" maxlength="4" placeholder="사내 개인전화 끝 4자리" onkeydown="showKeyCode(event,this)">
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">네이트온 ID</div>
+					<input class="profile_input_style" id="pop_modify_nate" data-role="none">
+				</div>
+			</div>
+			<div class="register_wrap" style="height:50px;">
+				<div style="height:50px;width:26%;float:left;" class="common_border">
+					<select id="pop_modify_month" data-role="none" style="height:30px;width:19%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+					  <option value="1">1월</option>
+					  <option value="2">2월</option>
+					  <option value="3">3월</option>
+					  <option value="4">4월</option>
+					  <option value="5">5월</option>
+					  <option value="6">6월</option>
+					  <option value="7">7월</option>
+					  <option value="8">8월</option>
+					  <option value="9">9월</option>
+					  <option value="10">10월</option>
+					  <option value="11">11월</option>
+					  <option value="12">12월</option>
+					</select>
+				</div>
+				<div style="height:50px;width:3%;float:left;line-height:50px;text-align:center;"></div>
+				<div style="height:50px;width:26%;float:left;" class="common_border">
+					<select id="pop_modify_day" data-role="none" style="height:30px;width:19%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+					  <option value="1">1일</option>
+					  <option value="2">2일</option>
+					  <option value="3">3일</option>
+					  <option value="4">4일</option>
+					  <option value="5">5일</option>
+					  <option value="6">6일</option>
+					  <option value="7">7일</option>
+					  <option value="8">8일</option>
+					  <option value="9">9일</option>
+					  <option value="10">10일</option>
+					  <option value="11">11일</option>
+					  <option value="12">12일</option>
+					  <option value="13">13일</option>
+					  <option value="14">14일</option>
+					  <option value="15">15일</option>
+					  <option value="16">16일</option>
+					  <option value="17">17일</option>
+					  <option value="18">18일</option>
+					  <option value="19">19일</option>
+					  <option value="20">20일</option>
+					  <option value="21">21일</option>
+					  <option value="22">22일</option>
+					  <option value="23">23일</option>
+					  <option value="24">24일</option>
+					  <option value="25">25일</option>
+					  <option value="26">26일</option>
+					  <option value="27">27일</option>
+					  <option value="28">28일</option>
+					  <option value="29">29일</option>
+					  <option value="30">30일</option>
+					  <option value="31">31일</option>
+					</select>
+				</div>
+				<div style="height:50px;width:45%;float:left;text-align:center;line-height:50px;">
+					<span>양력&nbsp;<input data-role="none" type="radio" id="pop_modify_yang" value="(양)"></span>&nbsp;&nbsp;
+					<span>음력&nbsp;<input data-role="none" type="radio" id="pop_modify_hm" value="(음)"></span>
+					
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">직급</div>
+					<select id="modify_job_grade" class="profile_input_style" data-role="none">
+						  <option value="직급" selected="selected">직급</option>
+						  <option value="인턴">인턴</option>
+						  <option value="사원">사원</option>
+						  <option value="주임">주임</option>
+						  <option value="대리">대리</option>
+						  <option value="과장">과장</option>
+						  <option value="차장">차장</option>
+						  <option value="팀장">팀장</option>
+						  <option value="실장">실장</option>
+						  <option value="부장">부장</option>
+						  <option value="본부장">본부장</option>
+						  <option value="국장">국장</option>
+						  <option value="전무">전무</option>
+						  <option value="이사">이사</option>
+						  <option value="국장">국장</option>
+						  <option value="부대표">부대표</option>
+						  <option value="대표">대표</option>			  
+					</select>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">소속부서</div>
+					<select id="modify_department" class="profile_input_style" data-role="none">
+						  <option value="소속부서" selected="selected">소속부서</option>
+						  <option value="0">대표</option>
+						  <option value="1">경영지원팀</option>
+						  <option value="2">기획1팀</option>
+						  <option value="3">기획2팀</option>
+						  <option value="4">기획3팀</option>
+						  <option value="5">기획4팀</option>
+						  <option value="15">남양 UX팀</option>
+						  <option value="14">남양 개발팀</option>
+						  <option value="13">남양 기획팀</option>
+						  <option value="16">남양 디자인팀</option>
+						  <option value="11">남양 아이팀</option>
+						  <option value="7">제작팀</option>
+						  <option value="9">페이스북팀</option>
+						  <option value="8">프로그램팀</option>
+					</select>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">상태</div>
+					<select id="modify_job_state" class="profile_input_style" data-role="none">
+						  <option value="상태" selected="selected">상태</option>
+						  <option value="1">대기</option>
+						  <option value="2">재직</option>
+						  <option value="3">퇴사</option>
+					</select>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">현재상태</div>
+					<select id="modify_work_state" class="profile_input_style" data-role="none">
+						  <option value="현재근무상태">현재근무상태</option>
+						  <option value="1">근무중</option>
+						  <option value="2">외근중</option>
+						  <option value="3">야근중</option>
+						  <option value="4">퇴근</option>
+						  <option value="5">휴가</option>
+					</select>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">나의 한마디</div>
+					<input class="profile_input_style" id="pop_modify_toking" data-role="none">
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				오늘 나의 컨디션
+				<div class="profile_condition" style="width:100%;height:30px;margin-top:5px;">
+					<div id="modify_condition1" onclick="mfboxClick(1)" class="condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="modify_condition2" onclick="mfboxClick(2)" class="condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="modify_condition3" onclick="mfboxClick(3)" class="condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="modify_condition4" onclick="mfboxClick(4)" class="condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="modify_condition5" onclick="mfboxClick(5)" class="condition_init common_border" style="width:calc(20% - 4px);float:left;height:30px;"></div>
+				</div>
+			</div>
+			<div style="width:100%;background-color:#90a4b4;">
+				<div style="text-align:center;margin-top:30px;padding-bottom: 10px;">
+					<div style="padding:10px 0;color:white;font-size:15px;text-shadow:0 0 0 white;">[사무실내 내자리 선택]</div>
+					<div style="position:relative;">
+						<div class="position_mark_down_a1 common_pos_down" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A1
+						</div>
+						<div class="position_mark_right_a2 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A2
+						</div>
+						<div class="position_mark_right_a3 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A3
+						</div>
+						<div class="position_mark_right_a4 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A4
+						</div>
+						<div class="position_mark_right_a5 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A5
+						</div>
+						<div class="position_mark_left_a6 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A6
+						</div>
+						<div class="position_mark_left_a7 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A7
+						</div>
+						<div class="position_mark_left_a8 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A8
+						</div>
+						<div class="position_mark_left_a9 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							A9
+						</div>
+						<div class="position_mark_down_b1 common_pos_down" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							B1
+						</div>
+						<div class="position_mark_right_b2 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							B2
+						</div>
+						<div class="position_mark_right_b3 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							B3
+						</div>
+						<div class="position_mark_right_b4 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							B4
+						</div>
+						<div class="position_mark_right_c1 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							C1
+						</div>
+						<div class="position_mark_right_c2 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							C2
+						</div>
+						<div class="position_mark_left_c3 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							C3
+						</div>
+						<div class="position_mark_left_c4 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							C4
+						</div>
+						<div class="position_mark_right_c5 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							C5
+						</div>
+						<div class="position_mark_down_d1 common_pos_down" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							D1
+						</div>
+						<div class="position_mark_right_d2 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							D2
+						</div>
+						<div class="position_mark_right_d3 common_pos_right" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							D3
+						</div>
+						<div class="position_mark_left_d4 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							D4
+						</div>
+						<div class="position_mark_left_d5 common_pos_left" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							D5
+						</div>
+						<div class="position_mark_down_e1 common_pos_down" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							E1
+						</div>
+						<div class="position_mark_down_e2 common_pos_down" style="z-index:1;font-size:85%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							E2
+						</div>
+						<div class="position_mark_down_ceo common_pos_down" style="z-index:1;font-size:50%;color:white;text-shadow: 0 0 0 white;text-align:center;">
+							CEO
+						</div>
+						<img src="img/position_mark_down_off.png" class="position_mark_init position_mark_down_a1" id="modify_position_mark_a1">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_a2" id="modify_position_mark_a2">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_a3" id="modify_position_mark_a3">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_a4" id="modify_position_mark_a4">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_a5" id="modify_position_mark_a5">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_a6" id="modify_position_mark_a6">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_a7" id="modify_position_mark_a7">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_a8" id="modify_position_mark_a8">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_a9" id="modify_position_mark_a9">
+						<img src="img/position_mark_down_off.png" class="position_mark_init position_mark_down_b1" id="modify_position_mark_b1">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_b2" id="modify_position_mark_b2">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_b3" id="modify_position_mark_b3">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_b4" id="modify_position_mark_b4">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_c1" id="modify_position_mark_c1">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_c2" id="modify_position_mark_c2">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_c3" id="modify_position_mark_c3">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_c4" id="modify_position_mark_c4">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_c5" id="modify_position_mark_c5">
+						<img src="img/position_mark_down_off.png" class="position_mark_init position_mark_down_d1" id="modify_position_mark_d1">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_d2" id="modify_position_mark_d2">
+						<img src="img/position_mark_right_off.png" class="position_mark_init position_mark_right_d3" id="modify_position_mark_d3">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_d4" id="modify_position_mark_d4">
+						<img src="img/position_mark_left_off.png" class="position_mark_init position_mark_left_d5" id="modify_position_mark_d5">
+						<img src="img/position_mark_down_off.png" class="position_mark_init position_mark_down_e1" id="modify_position_mark_e1">
+						<img src="img/position_mark_down_off.png" class="position_mark_init position_mark_down_e2" id="modify_position_mark_e2">
+						<img src="img/position_mark_down_off.png" class="position_mark_init position_mark_down_ceo" id="modify_position_mark_ceo">
+						<img src="img/join_position_bg.gif" style="width:100%;">
+					</div>
+					<div class="pop_profile_wrap" style="margin-bottom:10px;">
+						<div class="find_input1 common_border1">
+							<div class="find_id_mobile">내 위치</div>
+							<select id="modify_myposition" class="profile_input_style" data-role="none">
+								  <option value="현재근무상태">내 위치</option>
+								  <option value="a1">A1</option>
+								  <option value="a2">A2</option>
+								  <option value="a3">A3</option>
+								  <option value="a4">A4</option>
+								  <option value="a5">A5</option>
+								  <option value="a6">A6</option>
+								  <option value="a7">A7</option>
+								  <option value="a8">A8</option>
+								  <option value="a9">A9</option>
+								  <option value="b1">B1</option>
+								  <option value="b2">B2</option>
+								  <option value="b3">B3</option>
+								  <option value="b4">B4</option>
+								  <option value="c1">C1</option>
+								  <option value="c2">C2</option>
+								  <option value="c3">C3</option>
+								  <option value="c4">C4</option>
+								  <option value="c5">C5</option>
+								  <option value="d1">D1</option>
+								  <option value="d2">D2</option>
+								  <option value="d3">D3</option>
+								  <option value="d4">D4</option>
+								  <option value="d5">D5</option>
+								  <option value="e1">E1</option>
+								  <option value="e2">E2</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="index_login_btn" onclick="modify(1)">
+				<div class="login_text">사원정보수정</div>
+				<img class="index_login_btn_img" src="img/blue_btn.gif">
+			</div>
+
+			<!--<div id="pop_find_head" class="pop_find_font">
+				<h1>사원정보수정</h1>
+				<a href="#pop_mypage">
+					<img id="close_btn" src="img/close_btn.gif">
+				</a>
+			</div>
+			<div class="pop_join_photo">
+				<div class="pop_join_empty">						
+					<img id="pop_modify_user_picture" src="img/basicPhoto.gif">		
+				</div>
+				
+				<canvas id="getCanvas2" height="192" width="192"></canvas>
+			</div>
+			<div id="pop_join_content">
+				<div class="style_margin0"><input type="text" readonly id="pop_modify_id" placeholder="id"/></div>
+				<div class="style_margin0"><input type="password" id="pop_modify_pw" placeholder="password"/></div>
+				<div class="style_margin0"><input type="password" id="pop_modify_pw2" placeholder="password 확인"/></div>
+				<div class="style_margin0 pop_modify_email_wrap">
+					<div class="pop_modify_email_id">
+						<input id="pop_modify_email" onkeyup="koreanCheck(event)" placeholder="email"/>
+					</div>
+					<p class="pop_modify_email_at">@</p>
+					<div class="pop_modify_email_add_wrap">
+						<input class="pop_modify_email_add" placeholder="address" type="text" readonly/>
+					</div>
+					<div class="pop_modify_email_select_wrap">
+						<select class="pop_modify_email_select">
+							<option value="none" selected="selected">선 택</option>
+							<option value="naver.com">naver.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="daum.net">daum.net</option>
+							<option value="hanmail.net">hanmail.net</option>
+							<option value="nate.com">nate.com</option>
+							<option value="chol.com">chol.com</option>
+							<option value="hotmail.com">hotmail.com</option>
+							<option value="yahoo.co.kr">yahoo.co.kr</option>
+							<option value="in_self">직접입력</option>
+						</select>
+					</div>
+				</div>
+				<div class="style_margin0 clear_both"><input id="pop_modify_name" placeholder="이름"/></div>
+				<div class="style_margin0 pop_modify_call_info">
+					<select class="pop_modify_call_num">
+						<option value="none">연락처</option>
+						<option id="pop_modify_call_010" value="010">010</option>
+						<option id="pop_modify_call_016" value="016">016</option>
+						<option id="pop_modify_call_017" value="017">017</option>
+						<option id="pop_modify_call_018" value="018">018</option>
+						<option id="pop_modify_call_019" value="019">019</option>
+					</select>
+					<span class="pop_modify_front_number">-</span>
+					<input id="pop_modify_call_v1" type="text" maxlength="4" onkeydown="showKeyCode(event,this)">
+					<span class="pop_modify_back_number">-</span>
+					<input id="pop_modify_call_v2" type="text" maxlength="4" onkeydown="showKeyCode(event,this)">
+				</div>
+				<div class="style_margin0 clear_both"><input id="pop_modify_p_num" type="text" maxlength="4" placeholder="사내 개인전화 끝 4자리" onkeydown="showKeyCode(event,this)"/></div>
+				<div class="style_margin0"><input id="pop_modify_nate" placeholder="nate on 아이디"/></div>
+				<div class="style_margin0 pop_modify_birth_info">
+					<select id="pop_modify_month">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					  <option value="9">9</option>
+					  <option value="10">10</option>
+					  <option value="11">11</option>
+					  <option value="12">12</option>
+					</select>
+					<span class="pop_modify_font1 pop_modify_days">
+						월
+					</span>
+					<select id="pop_modify_day">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					  <option value="9">9</option>
+					  <option value="10">10</option>
+					  <option value="11">11</option>
+					  <option value="12">12</option>
+					  <option value="13">13</option>
+					  <option value="14">14</option>
+					  <option value="15">15</option>
+					  <option value="16">16</option>
+					  <option value="17">17</option>
+					  <option value="18">18</option>
+					  <option value="19">19</option>
+					  <option value="20">20</option>
+					  <option value="21">21</option>
+					  <option value="22">22</option>
+					  <option value="23">23</option>
+					  <option value="24">24</option>
+					  <option value="25">25</option>
+					  <option value="26">26</option>
+					  <option value="27">27</option>
+					  <option value="28">28</option>
+					  <option value="29">29</option>
+					  <option value="30">30</option>
+					  <option value="31">31</option>
+					</select>
+					<span  class="pop_modify_font1 pop_modify_days3">
+						일
+					</span>
+					<span class="pop_modify_font1 pop_modify_days1">양력</span>
+					<input data-role="none" type="radio" id="pop_modify_yang" value="(양)">
+					<span class="pop_modify_font1 pop_modify_days1">음력</span>
+					<input data-role="none" type="radio" id="pop_modify_hm" value="(음)">
+				</div>
+				<div class="pop_join_select_style clear_both">
+					<select id="modify_job_grade">
+						  <option value="직급" selected="selected">직급</option>
+						  <option value="인턴">인턴</option>
+						  <option value="사원">사원</option>
+						  <option value="주임">주임</option>
+						  <option value="대리">대리</option>
+						  <option value="과장">과장</option>
+						  <option value="차장">차장</option>
+						  <option value="팀장">팀장</option>
+						  <option value="실장">실장</option>
+						  <option value="부장">부장</option>
+						  <option value="본부장">본부장</option>
+						  <option value="국장">국장</option>
+						  <option value="전무">전무</option>
+						  <option value="이사">이사</option>
+						  <option value="국장">국장</option>
+						  <option value="부대표">부대표</option>
+						  <option value="대표">대표</option>			  
+					</select>
+				</div>
+				<div class="pop_join_select_style">
+					<select id="modify_department" name="소속부서" value="소속부서">
+						  <option value="소속부서" selected="selected">소속부서</option>
+						  <option value="6">SNS</option>
+						  <option value="1">경영지원팀</option>
+						  <option value="2">기획1팀</option>
+						  <option value="3">기획2팀</option>
+						  <option value="4">기획3팀</option>
+						  <option value="5">기획4팀</option>
+						  <option value="15">남양 UX팀</option>
+						  <option value="14">남양 개발팀</option>
+						  <option value="13">남양 기획팀</option>
+						  <option value="16">남양 디자인팀</option>
+						  <option value="11">남양 아이팀</option>
+						  <option value="10">뉴비지니스팀</option>
+						  <option value="7">제작팀</option>
+						  <option value="9">페이스북팀</option>
+						  <option value="8">프로그램팀</option>
+					</select>
+				</div>
+				<div class="pop_join_select_style">
+					<select id="modify_job_state">
+						  <option value="상태" selected="selected">상태</option>
+						  <option value="1">대기</option>
+						  <option value="2">재직</option>
+						  <option value="3">퇴사</option>
+					</select>
+				</div>
+				<div class="pop_join_select_style">
+					<select id="modify_work_state">
+						  <option value="현재근무상태" selected="selected">현재근무상태</option>
+						  <option value="1">근무중</option>
+						  <option value="2">외근중</option>
+						  <option value="3">야근중</option>
+						  <option value="4">퇴근</option>
+						  <option value="5">휴가</option>
+					</select>
+				</div>
+				<div>
+					<div class="pop_find_font style_margin1">오늘 나의 컨디션</div>
+					<div class="style_margin0 pop_modify_div">
+						<div class="pop_modify_box pop_modify_box_width" id="mfbox1" onclick="mfboxClick(1)"></div>
+						<div class="pop_modify_box pop_modify_box_width" id="mfbox2" onclick="mfboxClick(2)"></div>
+						<div class="pop_modify_box pop_modify_box_width" id="mfbox3" onclick="mfboxClick(3)"></div>
+						<div class="pop_modify_box pop_modify_box_width" id="mfbox4" onclick="mfboxClick(4)"></div>
+						<div class="pop_modify_box pop_modify_box_width" id="mfbox5" onclick="mfboxClick(5)"></div>
+						<div class="pop_modify_box pop_modify_box_width" id="mfbox6" onclick="mfboxClick(6)"></div>
+						<div class="pop_modify_box pop_modify_box_width" id="mfbox7" onclick="mfboxClick(7)"></div>
+						<div class="pop_modify_Lbox pop_modify_box_width" id="mfbox8" onclick="mfboxClick(8)"></div>
+					</div>
+				</div>
+				<div class="pop_modify_chair">
+					<div class="pop_find_font style_margin1">사무실내 내자리 선택</div>
+					<div id="pop_modify_chair_div">
+						<div class="pop_find_chair_sz pop_find_prod">
+							<div class="pop_modify_font modify_chair1">제작팀</div>
+							<img class="pop_modify_box_style mdprod_box1" onclick="chairClick1(this)" id="chairCounts1" src="img/check_off.png">
+							<img class="pop_modify_box_style mdprod_box2" onclick="chairClick1(this)" id="chairCounts2" src="img/check_off.png">
+							<img class="pop_modify_box_style mdprod_box3" onclick="chairClick1(this)" id="chairCounts3" src="img/check_off.png">
+							<img class="pop_modify_box_style mdprod_box4" onclick="chairClick1(this)" id="chairCounts4" src="img/check_off.png">
+							<img class="pop_modify_box_style mdprod_box5" onclick="chairClick1(this)" id="chairCounts5" src="img/check_off.png">
+							<div class="pop_find_prod_suv pop_find_chair_sz">
+								<div class="pop_find_prod_v pop_join_font">탕비실</div>
+							</div>
+						</div>
+						<div class="pop_find_chair_sz pop_find_plan">
+							<div class="pop_modify_font modify_chair2">기획팀</div>
+							<img class="pop_modify_box_style mdplan_box1" onclick="chairClick1(this)" id="chairCounts6" src="img/check_off.png">
+							<img class="pop_modify_box_style mdplan_box2" onclick="chairClick1(this)" id="chairCounts7" src="img/check_off.png">
+							<img class="pop_modify_box_style mdplan_box3" onclick="chairClick1(this)" id="chairCounts8" src="img/check_off.png">
+							<img class="pop_modify_box_style mdplan_box4" onclick="chairClick1(this)" id="chairCounts9" src="img/check_off.png">
+							<img class="pop_modify_box_style mdplan_box5" onclick="chairClick1(this)" id="chairCounts10" src="img/check_off.png">
+							<img class="pop_modify_box_style mdplan_box6" onclick="chairClick1(this)" id="chairCounts11" src="img/check_off.png">
+							<img class="pop_modify_box_style mdplan_box7" onclick="chairClick1(this)" id="chairCounts12" src="img/check_off.png">
+							<img class="pop_modify_box_style mdplan_box8" onclick="chairClick1(this)" id="chairCounts13" src="img/check_off.png">
+							<img class="pop_modify_box_style mdplan_box9" onclick="chairClick1(this)" id="chairCounts14" src="img/check_off.png">
+							<img class="pop_modify_box_style mdplan_box10" onclick="chairClick1(this)" id="chairCounts15" src="img/check_off.png">
+							<img class="pop_modify_box_style mdplan_box11" onclick="chairClick1(this)" id="chairCounts16" src="img/check_off.png">
+							<img class="pop_modify_box_style mdplan_box12" onclick="chairClick1(this)" id="chairCounts17" src="img/check_off.png">
+							<img class="pop_modify_box_style mdplan_box13" onclick="chairClick1(this)" id="chairCounts18" src="img/check_off.png">
+						</div>
+						<div class="pop_find_chair_sz pop_find_pres">
+							<div class="pop_modify_font">대표실</div>
+							<img class="pop_modify_box_style mdpres_box1" onclick="chairClick1(this)" id="chairCounts19" src="img/check_off.png">
+						</div>
+						<div class="pop_modify_chair_sz pop_find_movi">
+							<div class="pop_modify_font modify_chair3">영상팀</div>
+							<img class="pop_modify_box_style mdmovi_box1" onclick="chairClick1(this)" id="chairCounts20" src="img/check_off.png">
+							<img class="pop_modify_box_style mdmovi_box2" onclick="chairClick1(this)" id="chairCounts21" src="img/check_off.png">
+							<img class="pop_modify_box_style mdmovi_box3" onclick="chairClick1(this)" id="chairCounts22" src="img/check_off.png">
+							<img class="pop_modify_box_style mdmovi_box4" onclick="chairClick1(this)" id="chairCounts23" src="img/check_off.png">
+							<img class="pop_modify_box_style mdmovi_box5" onclick="chairClick1(this)" id="chairCounts24" src="img/check_off.png">
+						</div>
+						<div class="pop_modify_chair_sz pop_find_meet">
+							<div class="pop_modify_font">대회의실</div>
+						</div>
+						<div class="pop_modify_chair_sz pop_find_mana">
+							<div class="pop_modify_font modify_chair4">경영팀</div>
+							<img class="pop_modify_box_style mdmana_box1" onclick="chairClick1(this)" id="chairCounts25" src="img/check_off.png">
+							<img class="pop_modify_box_style mdmana_box2" onclick="chairClick1(this)" id="chairCounts26" src="img/check_off.png">
+						</div>
+						<div class="pop_modify_chair_sz pop_find_mtoil">
+							<div class="pop_modify_font">남화장실</div>
+						</div>
+						<div class="pop_modify_chair_sz pop_find_wtoil">
+							<div class="pop_modify_font">여화장실</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="pop_join_com">
+				<div class="style_margin2">
+					<button class="pop_modify_btn" onclick="modify(1)">사원정보수정</button>
+				</div>
+			</div>-->
+		</div>
+
+		<div data-role="page" id="main_map">
+			<div class="main_head">
+				<a href="#pop_mypage"><img class="main_modify_icon" src="img/main_modify_icon.gif"></a>
+				<img class="main_logo_icon" src="img/main_logo_icon.gif">
+				<a href="#main"><img class="main_mainMap_icon" src="img/main_mainMenu_icon.gif"></a>
+				<img class="main_head_bg" src="img/main_head_bg.gif">
+			</div>
+			<div id="main_map_content" style="z-index:1;display:table-cell;vertical-align: middle;">
+				<div style="position:relative;">
+					<img src="img/main_map_1.gif" class="main_map_1" style="opacity:0;" onclick="javascript:mainMap('1');">
+					<img src="img/main_map_2.gif" class="main_map_2" style="opacity:0;" onclick="javascript:mainMap('2');">
+					<img src="img/main_map_3.gif" class="main_map_3" style="opacity:0;" onclick="javascript:mainMap('3');">
+					<img src="img/main_map_4.gif" class="main_map_4" style="opacity:0;" onclick="javascript:mainMap('4');">
+					<img src="img/main_map_5.gif" class="main_map_5" style="opacity:0;" onclick="javascript:mainMap('5');">
+					<img src="img/main_map_6.gif" class="main_map_6" style="opacity:0;" onclick="javascript:mainMap('6');">
+					<img id="main_map_bg" src="img/main_map_bg.gif" style="width:100%;" onclick="javascript:mainMap('3');">
+				</div>
+			</div>
+			<div class="main_footer">
+				<div class="main_footer_icons">
+					<a href="javascript:alert('준비중입니다.');"><div class="main_footer_icons_style"><img src="img/game.gif" width="37px"></div></a>
+					<!--<a href="#pop_choice"><div class="main_footer_icons_style"><img src="img/game.gif" width="37px"></div></a>-->
+					<a href="#pop_notice"><div class="main_footer_icons_style"><img src="img/notice.gif" width="37px"></div></a>
+					<a href="#pop_scheduler"><div class="main_footer_icons_style"><img src="img/scheduler.gif" width="37px;"></div></a>
+					<a href="#main"><div class="main_footer_icons_style1"><img src="img/home.gif" width="37px"></div></a>
+				</div>		
+			</div>
+		    <!--<div id="main_map_shadow"></div>
+			<div id="main_map_shadow_in">
+				<div id="main_map_shadow_header">제작팀<img id="main_map_close_btn" onclick="viewCloseBtn()" style="width:40px;height:40px;" src="img/close_btn2.png"></div>
+				<div id="main_map_shadow_content" style="padding:5px;"></div>
+			</div>
+			<div id="main_header" data-role="none">
+				<div class="main_header_icon_left float_left">
+					<a href="#pop_mypage"><img id="main_mymodify_icon" width="40px;" height="40px;" src="img/my_modify.png"></a>
+				</div>
+				<div class="main_logo">
+					<img id="main_logo_icon" width="45px;" height="45px;" src="img/main_header_logo.png">
+				</div>
+				<div class="main_header_icon_right float_right">
+					<a href="#main"><img id="main_menu_icon" width="40px;" height="40px;" src="img/main_btn.png"></a>
+				</div>
+			</div>
+			<div id="main_map_content">
+				<div id="main_map_first">
+					<div id="main_map_first_1" class="main_map_font" onclick="javascript:mainMap('1');">제작팀</div>
+					<div id="main_map_first_2" class="main_map_font">탕비실</div>
+					<div id="main_map_first_3" class="main_map_font" onclick="javascript:mainMap('2');">대표실</div>
+					<div id="main_map_first_4" class="main_map_font">대회의실</div>
+					<div id="main_map_first_5" class="main_map_font">남화장실</div>
+				</div>
+				<div id="main_map_second"></div>
+				<div id="main_map_third">
+					<div id="main_map_third_1" class="main_map_font" onclick="javascript:mainMap('3');">기획팀</div>
+					<div id="main_map_third_2" class="main_map_font" onclick="javascript:mainMap('4');">영상팀</div>
+					<div id="main_map_third_3" class="main_map_font" onclick="javascript:mainMap('5');">경영팀</div>
+					<div id="main_map_third_4" class="main_map_font">여화장실</div>
+				</div>
+			</div>   
+			<div id="main_footer">
+				<div class="main_footer_left">
+					<a href="javascript:history.back()"><img id="main_mymodify_icon" width="40px;" height="40px;" src="img/left.png"></a>
+				</div>
+				<div class="main_footer_right">
+					<a href="javascript:history.forward()"><img id="main_logo_icon" width="40px;" height="40px;" src="img/right.png"></a>
+				</div>
+				<div class="main_footer_choice">
+					<a href="#pop_notice"><img id="main_logo_icon" width="40px;" height="40px;" src="img/notice.gif"></a>
+				</div>
+				<div class="main_footer_scheduler">
+					<a href="#pop_scheduler"><img id="main_menu_icon" width="40px;" height="40px;" src="img/scheduler.gif"></a>
+				</div>
+				<div class="main_footer_home">
+					<a href="#main"><img id="main_menu_icon" width="40px;" height="40px;" src="img/home.png"></a>
+				</div>
+			</div>-->
+		</div>
+
+		<div data-role="page" id="main_map_view">
+			<div class="map_view_head">
+				<a href="#pop_mypage"><img class="main_modify_icon" src="img/main_modify_icon.gif"></a>
+				<img class="main_logo_icon" src="img/main_logo_icon.gif">
+				<a href="#main"><img class="main_mainMap_icon" src="img/main_mainMenu_icon.gif"></a>
+				<img class="main_head_bg" src="img/main_head_bg.gif">
+			</div>
+			<div class="common_head">
+				<div class="common_head_content">
+					<span class="common_head_text map_view_title"></span>
+					<a href="#main_map"><img class="close_btn" src="img/map_view_close_btn.gif"></a>
+				</div>
+				<img class="common_top_bg" src="img/main_map_view_head_bg.gif">
+			</div>
+			<div id="main_map_view_content" style="display:table-cell;vertical-align: middle;">
+				
+			<!--<div class="view_content_append">
+					<div class="map_view_text map_view_position_ceo map_view_style">
+						<div class="map_view_img">
+							<img src="http://int.udali.com/files/pic/sbkim422.jpg" width="100%" height="100%">
+						</div>
+						<div class="map_view_text_out">
+							<div class="red_color map_view_text_in1">
+								<div class="map_view_text_in1_1">김승범</div>
+							</div>
+							<div class="red_color map_view_text_in2">
+								<div class="map_view_text_in2_1">근무중</div>
+							</div>
+						</div>
+					</div>
+					<img src="img/map_view_position.gif" id="map_view_img" class="map_view_position_ceo map_view_img_style" style="opacity:0;">
+					<img id="main_map_bg" src="img/ceo_bg.gif" width="100%">
+				</div>-->
+			</div>
+			<div class="main_footer">
+				<div class="main_footer_icons">
+					<a href="javascript:alert('준비중입니다.');"><div class="main_footer_icons_style"><img src="img/game.gif" width="37px"></div></a>
+					<!--<a href="#pop_choice"><div class="main_footer_icons_style"><img src="img/game.gif" width="37px"></div></a>-->
+					<a href="#pop_notice"><div class="main_footer_icons_style"><img src="img/notice.gif" width="37px"></div></a>
+					<a href="#pop_scheduler"><div class="main_footer_icons_style"><img src="img/scheduler.gif" width="37px;"></div></a>
+					<a href="#main"><div class="main_footer_icons_style1"><img src="img/home.gif" width="37px"></div></a>
+				</div>		
+			</div>
+		</div>
+
+		<div data-role="page" id="pop_profile">
+			<div id="profile_shadow" onclick="profile_full_img_close()">
+				<img id="profile_shadow_img" src="">
+			</div>
+			<div class="common_head">
+				<div class="common_head_content">
+					<span class="common_head_text">사원정보</span>
+					<a href="#main"><img class="close_btn" src="img/close_btn.gif"></a>
+				</div>
+				<img class="common_top_bg" src="img/top_bg.gif">
+			</div>
+			<div class="pop_join_photo">
+				<div class="pop_join_empty">						
+					<img id="getprofilePhoto" onclick="profile_full_img(this)" src="img/basicPhoto.gif">		
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">직급 : 이름</div>
+					<input class="profile_input_style" id="pop_profile_1" data-role="none" readonly>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">소속부서</div>
+					<input class="profile_input_style" id="pop_profile_2" data-role="none" readonly>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">현재상태</div>
+					<input class="profile_input_style red_color" id="pop_profile_3" data-role="none" readonly>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">나의 한마디</div>
+					<input class="profile_input_style" id="pop_profile_4" data-role="none" readonly>
+				</div>
+			</div>
+			<div class="pop_profile_wrap">
+				오늘 나의 컨디션
+				<div class="profile_condition" style="width:100%;height:30px;margin-top:5px;margin-bottom:20px;">
+					<div id="profile_condition1" class="condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="profile_condition2" class="condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="profile_condition3" class="condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="profile_condition4" class="condition_init common_border" style="width:calc(20% - 4px);float:left;margin-right:5px;height:30px;"></div>
+					<div id="profile_condition5" class="condition_init common_border" style="width:calc(20% - 4px);float:left;height:30px;"></div>
+				</div>
+			</div>
+			<!--
+			<div class="pop_profile_photo">
+				<img id="getprofilePhoto" src="">
+			</div>
+			<div id="pop_profile_content">
+				<div class="pop_profile_box pop_profile_font" id="pop_profile_1"></div>
+				<div class="pop_profile_box pop_profile_font" id="pop_profile_2"></div>
+				<div class="pop_profile_box pop_profile_font" id="pop_profile_3"></div>
+				<div class="pop_profile_box pop_profile_font" id="pop_profile_4"></div>
+				<div></div>
+				<div class="pop_profile_font1 style_margin2">오늘 나의 컨디션</div>
+				<div class="style_margin0 pop_mypage_div pop_profile_init_wap">
+					<div class="pop_profile_box1 pop_profile_box_width" id="mprbox1"></div>
+					<div class="pop_profile_box1 pop_profile_box_width" id="mprbox2"></div>
+					<div class="pop_profile_box1 pop_profile_box_width" id="mprbox3"></div>
+					<div class="pop_profile_box1 pop_profile_box_width" id="mprbox4"></div>
+					<div class="pop_profile_box1 pop_profile_box_width" id="mprbox5"></div>
+					<div class="pop_profile_box1 pop_profile_box_width" id="mprbox6"></div>
+					<div class="pop_profile_box1 pop_profile_box_width" id="mprbox7"></div>
+					<div class="pop_profile_box2 pop_profile_box_width" id="mprbox8"></div>
+				</div>
+			</div>-->
+
+		</div>
+
+		<div data-role="page" id="pop_workDaily"> 
+			<div class="common_head_fixed">
+				<div class="common_head_content">
+					<span class="common_head_text">일일업무보고(CEO)</span>
+					<a href="#main"><img class="close_btn" src="img/close_btn.gif"></a>
+				</div>
+				<img class="common_top_bg" src="img/top_bg.gif">
+			</div>
+			<div class="notice_content">
+				<div class="notice_content_info">
+					<div style="width:40%;height:55px;line-height:55px;float:left;">
+						제목
+					</div>
+					<div style="width:15%;height:55px;line-height:55px;float:left;background-color:#edeff0;">
+						이름
+					</div>
+					<div style="width:30%;height:55px;line-height:55px;float:left;">
+						날짜
+					</div>
+					<div style="width:15%;height:55px;line-height:55px;float:left;background-color:#de6559;color:white;text-shadow:0 0 0 white;">
+						내려받기
+					</div>
+				</div>
+				<div id="workDaily_content">
+						
+				</div>
+			</div>
+			<div class="pop_notice_footer" onclick="moreDailyList()" pageNumber="10">
+				<div style="position:absolute;z-index:9999;width:100%;height:50px;text-align:center;">
+					<img src="img/notice_foot_icon.gif" style="position:absolute;margin-top:15px;width:17px;">
+					<span style="font-size:18px;text-shadow:0 0 0 white;line-height:50px;color:white;margin-left:26px;">더보기</span>
+				</div>
+				<img src="img/notice_foot_bg.gif" style="width:100%;height:50px;position:relative;">
+			</div>
+			<!--<div id="pop_workDaily_head" class="pop_find_font">
+				<h1>일일업무보고(ceo)</h1>
+				<a href="#pop_mypage"><img id="close_btn" src="img/close_btn.png"></a>
+			</div>
+			<div id="pop_workDaily_content">
+			</div>
+			<div id="pop_workDaily_footer" pageNumber="0">
+				<button onclick="moreDailyList()">더보기</button>
+			</div>-->
+		</div>
+
+		<div data-role="page" id="pop_scheduler"> 
+			<div class="common_head_fixed">
+				<div class="common_head_content">
+					<span class="common_head_text">회의실 스케줄</span>
+					<a href="#main"><img class="close_btn" src="img/close_btn.gif"></a>
+				</div>
+				<img class="common_top_bg" src="img/top_bg.gif">
+			</div>
+			<div id="scheduler_content">
+			</div>
+			<div class="pop_notice_footer" pageNumber="10">
+				<a href="#pop_register"><div style="position:absolute;z-index:9999;width:100%;height:50px;text-align:center;">
+					<img src="img/notice_foot_icon.gif" style="position:absolute;margin-top:15px;width:17px;">
+					<span style="font-size:18px;text-shadow:0 0 0 white;line-height:50px;color:white;margin-left:26px;">회의등록</span>
+				</div></a> 
+				<img src="img/notice_foot_bg.gif" style="width:100%;height:50px;position:relative;">
+			</div>
+		</div>
+
+		<div data-role="page" id="pop_register"> 
+			<div class="common_head">
+				<div class="common_head_content">
+					<span class="common_head_text">회의실 스케줄 등록</span>
+					<a href="#pop_scheduler"><img class="close_btn" src="img/close_btn.gif"></a>
+				</div>
+				<img class="common_top_bg" src="img/top_bg.gif">
+			</div>
+			<div class="register_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">회의명</div>
+					<input class="register_input_style" id="pop_register_title" placeholder="회의명 입력" data-role="none">
+				</div>
+			</div>
+			<div class="register_wrap" style="height:50px;">
+				<div style="height:50px;width:40%;float:left;margin-right:5%;" class="common_border">
+					<select data-role="none" id="pop_register_dateY" style="height:30px;width:30%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+						<option value="no">년</option>
+						<option value="15">2015년</option>
+						<option value="16">2016년</option>
+						<option value="17">2017년</option>
+						<option value="18">2018년</option>
+						<option value="19">2019년</option>
+						<option value="20">2020년</option>
+					</select>
+				</div>
+				<div style="height:50px;width:25%;float:left;margin-right:5%;" class="common_border">
+					<select id="pop_register_dateM" data-role="none" style="height:30px;width:18%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+						<option value="no">월</option>
+						<option value="1">1월</option>
+						<option value="2">2월</option>
+						<option value="3">3월</option>
+						<option value="4">4월</option>
+						<option value="5">5월</option>
+						<option value="6">6월</option>
+						<option value="7">7월</option>
+						<option value="8">8월</option>
+						<option value="9">9월</option>
+						<option value="10">10월</option>
+						<option value="11">11월</option>
+						<option value="12">12월</option>
+					</select>
+				</div>
+				<div style="height:50px;width:25%;float:left;" class="common_border">
+					<select id="pop_register_dateD" data-role="none" style="height:30px;width:17%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+						<option value="no">일</option>
+						<option value="1">1일</option>
+						<option value="2">2일</option>
+						<option value="3">3일</option>
+						<option value="4">4일</option>
+						<option value="5">5일</option>
+						<option value="6">6일</option>
+						<option value="7">7일</option>
+						<option value="8">8일</option>
+						<option value="9">9일</option>
+						<option value="10">10일</option>
+						<option value="11">11일</option>
+						<option value="12">12일</option>
+						<option value="13">13일</option>
+						<option value="14">14일</option>
+						<option value="15">15일</option>
+						<option value="16">16일</option>
+						<option value="17">17일</option>
+						<option value="18">18일</option>
+						<option value="19">19일</option>
+						<option value="20">20일</option>
+						<option value="21">21일</option>
+						<option value="22">22일</option>
+						<option value="23">23일</option>
+						<option value="24">24일</option>
+						<option value="25">25일</option>
+						<option value="26">26일</option>
+						<option value="27">27일</option>
+						<option value="28">28일</option>
+						<option value="29">29일</option>
+						<option value="30">30일</option>
+						<option value="31">31일</option>
+					</select>
+				</div>
+			</div>
+			<div class="register_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">시작시간</div>
+					<select class="register_select_style" id="pop_register_Start" data-role="none">
+						<option value="no">회의시작 시간</option>
+						<option value="8_00">8시</option>
+						<option value="8_10">8시 10분</option>
+						<option value="8_20">8시 20분</option>
+						<option value="8_30">8시 30분</option>
+						<option value="8_40">8시 40분</option>
+						<option value="8_50">8시 50분</option>
+						<option value="9_00">9시</option>
+						<option value="9_10">9시 10분</option>
+						<option value="9_20">9시 20분</option>
+						<option value="9_30">9시 30분</option>
+						<option value="9_40">9시 40분</option>
+						<option value="9_50">9시 50분</option>
+						<option value="10_00">10시</option>
+						<option value="10_10">10시 10분</option>
+						<option value="10_20">10시 20분</option>
+						<option value="10_30">10시 30분</option>
+						<option value="10_40">10시 40분</option>
+						<option value="10_50">10시 50분</option>
+						<option value="11_00">11시</option>
+						<option value="11_10">11시 10분</option>
+						<option value="11_20">11시 20분</option>
+						<option value="11_30">11시 30분</option>
+						<option value="11_40">11시 40분</option>
+						<option value="11_50">11시 50분</option>
+						<option value="12_00">12시</option>
+						<option value="12_10">12시 10분</option>
+						<option value="12_20">12시 20분</option>
+						<option value="12_30">12시 30분</option>
+						<option value="12_40">12시 40분</option>
+						<option value="12_50">12시 50분</option>
+						<option value="13_00">13시</option>
+						<option value="13_10">13시 10분</option>
+						<option value="13_20">13시 20분</option>
+						<option value="13_30">13시 30분</option>
+						<option value="13_40">13시 40분</option>
+						<option value="13_50">13시 50분</option>
+						<option value="14_00">14시</option>
+						<option value="14_10">14시 10분</option>
+						<option value="14_20">14시 20분</option>
+						<option value="14_30">14시 30분</option>
+						<option value="14_40">14시 40분</option>
+						<option value="14_50">14시 50분</option>
+						<option value="15_00">15시</option>
+						<option value="15_10">15시 10분</option>
+						<option value="15_20">15시 20분</option>
+						<option value="15_30">15시 30분</option>
+						<option value="15_40">15시 40분</option>
+						<option value="15_50">15시 50분</option>
+						<option value="16_00">16시</option>
+						<option value="16_10">16시 10분</option>
+						<option value="16_20">16시 20분</option>
+						<option value="16_30">16시 30분</option>
+						<option value="16_40">16시 40분</option>
+						<option value="16_50">16시 50분</option>
+						<option value="17_00">17시</option>
+						<option value="17_10">17시 10분</option>
+						<option value="17_20">17시 20분</option>
+						<option value="17_30">17시 30분</option>
+						<option value="17_40">17시 40분</option>
+						<option value="17_50">17시 50분</option>
+						<option value="18_00">18시</option>
+						<option value="18_10">18시 10분</option>
+						<option value="18_20">18시 20분</option>
+						<option value="18_30">18시 30분</option>
+						<option value="18_40">18시 40분</option>
+						<option value="18_50">18시 50분</option>
+						<option value="19_00">19시</option>
+						<option value="19_10">19시 10분</option>
+						<option value="19_20">19시 20분</option>
+						<option value="19_30">19시 30분</option>
+						<option value="19_40">19시 40분</option>
+						<option value="19_50">19시 50분</option>
+						<option value="20_00">20시</option>
+						<option value="20_10">20시 10분</option>
+						<option value="20_20">20시 20분</option>
+						<option value="20_30">20시 30분</option>
+						<option value="20_40">20시 40분</option>
+						<option value="20_50">20시 50분</option>
+						<option value="21_00">21시</option>
+						<option value="21_10">21시 10분</option>
+						<option value="21_20">21시 20분</option>
+						<option value="21_30">21시 30분</option>
+						<option value="21_40">21시 40분</option>
+						<option value="21_50">21시 50분</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="register_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">종료시간</div>
+					<select class="register_select_style" id="pop_register_End" data-role="none">
+						<option value="no">회의시작 시간</option>
+						<option value="8_00">8시</option>
+						<option value="8_10">8시 10분</option>
+						<option value="8_20">8시 20분</option>
+						<option value="8_30">8시 30분</option>
+						<option value="8_40">8시 40분</option>
+						<option value="8_50">8시 50분</option>
+						<option value="9_00">9시</option>
+						<option value="9_10">9시 10분</option>
+						<option value="9_20">9시 20분</option>
+						<option value="9_30">9시 30분</option>
+						<option value="9_40">9시 40분</option>
+						<option value="9_50">9시 50분</option>
+						<option value="10_00">10시</option>
+						<option value="10_10">10시 10분</option>
+						<option value="10_20">10시 20분</option>
+						<option value="10_30">10시 30분</option>
+						<option value="10_40">10시 40분</option>
+						<option value="10_50">10시 50분</option>
+						<option value="11_00">11시</option>
+						<option value="11_10">11시 10분</option>
+						<option value="11_20">11시 20분</option>
+						<option value="11_30">11시 30분</option>
+						<option value="11_40">11시 40분</option>
+						<option value="11_50">11시 50분</option>
+						<option value="12_00">12시</option>
+						<option value="12_10">12시 10분</option>
+						<option value="12_20">12시 20분</option>
+						<option value="12_30">12시 30분</option>
+						<option value="12_40">12시 40분</option>
+						<option value="12_50">12시 50분</option>
+						<option value="13_00">13시</option>
+						<option value="13_10">13시 10분</option>
+						<option value="13_20">13시 20분</option>
+						<option value="13_30">13시 30분</option>
+						<option value="13_40">13시 40분</option>
+						<option value="13_50">13시 50분</option>
+						<option value="14_00">14시</option>
+						<option value="14_10">14시 10분</option>
+						<option value="14_20">14시 20분</option>
+						<option value="14_30">14시 30분</option>
+						<option value="14_40">14시 40분</option>
+						<option value="14_50">14시 50분</option>
+						<option value="15_00">15시</option>
+						<option value="15_10">15시 10분</option>
+						<option value="15_20">15시 20분</option>
+						<option value="15_30">15시 30분</option>
+						<option value="15_40">15시 40분</option>
+						<option value="15_50">15시 50분</option>
+						<option value="16_00">16시</option>
+						<option value="16_10">16시 10분</option>
+						<option value="16_20">16시 20분</option>
+						<option value="16_30">16시 30분</option>
+						<option value="16_40">16시 40분</option>
+						<option value="16_50">16시 50분</option>
+						<option value="17_00">17시</option>
+						<option value="17_10">17시 10분</option>
+						<option value="17_20">17시 20분</option>
+						<option value="17_30">17시 30분</option>
+						<option value="17_40">17시 40분</option>
+						<option value="17_50">17시 50분</option>
+						<option value="18_00">18시</option>
+						<option value="18_10">18시 10분</option>
+						<option value="18_20">18시 20분</option>
+						<option value="18_30">18시 30분</option>
+						<option value="18_40">18시 40분</option>
+						<option value="18_50">18시 50분</option>
+						<option value="19_00">19시</option>
+						<option value="19_10">19시 10분</option>
+						<option value="19_20">19시 20분</option>
+						<option value="19_30">19시 30분</option>
+						<option value="19_40">19시 40분</option>
+						<option value="19_50">19시 50분</option>
+						<option value="20_00">20시</option>
+						<option value="20_10">20시 10분</option>
+						<option value="20_20">20시 20분</option>
+						<option value="20_30">20시 30분</option>
+						<option value="20_40">20시 40분</option>
+						<option value="20_50">20시 50분</option>
+						<option value="21_00">21시</option>
+						<option value="21_10">21시 10분</option>
+						<option value="21_20">21시 20분</option>
+						<option value="21_30">21시 30분</option>
+						<option value="21_40">21시 40분</option>
+						<option value="21_50">21시 50분</option>
+					</select>
+				</div>
+			</div>
+			<div class="register_wrap" onclick="pop_scheduler_register()">
+				<span class="common_blut_text">확인</span>
+				<img class="common_blue_btn" src="img/blue_btn.gif">
+			</div>
+			<a href="#pop_scheduler"><div class="register_wrap">
+				<span class="common_blut_text">취소</span>
+				<img class="common_blue_btn" src="img/gray_btn.gif">
+			</div></a>
+		</div>
+
+		<div data-role="page" id="pop_scheduler_modify"> 
+			<div class="common_head">
+				<div class="common_head_content">
+					<span class="common_head_text">회의실 스케줄 수정</span>
+					<a href="#pop_scheduler"><img class="close_btn" src="img/close_btn.gif"></a>
+				</div>
+				<img class="common_top_bg" src="img/top_bg.gif">
+			</div>
+			<div class="register_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">회의명</div>
+					<input class="register_input_style" id="pop_scheduler_modify_title" placeholder="회의명 입력" data-role="none">
+				</div>
+			</div>
+			<div class="register_wrap" style="height:50px;">
+				<div style="height:50px;width:40%;float:left;margin-right:5%;" class="common_border">
+					<select data-role="none" id="pop_scheduler_modify_dateY" style="height:30px;width:30%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+						<option value="no">년</option>
+						<option value="15">2015년</option>
+						<option value="16">2016년</option>
+						<option value="17">2017년</option>
+						<option value="18">2018년</option>
+						<option value="19">2019년</option>
+						<option value="20">2020년</option>
+					</select>
+				</div>
+				<div style="height:50px;width:25%;float:left;margin-right:5%;" class="common_border">
+					<select id="pop_scheduler_modify_dateM" data-role="none" style="height:30px;width:18%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+						<option value="no">월</option>
+						<option value="1">1월</option>
+						<option value="2">2월</option>
+						<option value="3">3월</option>
+						<option value="4">4월</option>
+						<option value="5">5월</option>
+						<option value="6">6월</option>
+						<option value="7">7월</option>
+						<option value="8">8월</option>
+						<option value="9">9월</option>
+						<option value="10">10월</option>
+						<option value="11">11월</option>
+						<option value="12">12월</option>
+					</select>
+				</div>
+				<div style="height:50px;width:25%;float:left;" class="common_border">
+					<select id="pop_scheduler_modify_dateD" data-role="none" style="height:30px;width:17%;position:absolute;z-index:999;margin:9px 0 0 5px;">
+						<option value="no">일</option>
+						<option value="1">1일</option>
+						<option value="2">2일</option>
+						<option value="3">3일</option>
+						<option value="4">4일</option>
+						<option value="5">5일</option>
+						<option value="6">6일</option>
+						<option value="7">7일</option>
+						<option value="8">8일</option>
+						<option value="9">9일</option>
+						<option value="10">10일</option>
+						<option value="11">11일</option>
+						<option value="12">12일</option>
+						<option value="13">13일</option>
+						<option value="14">14일</option>
+						<option value="15">15일</option>
+						<option value="16">16일</option>
+						<option value="17">17일</option>
+						<option value="18">18일</option>
+						<option value="19">19일</option>
+						<option value="20">20일</option>
+						<option value="21">21일</option>
+						<option value="22">22일</option>
+						<option value="23">23일</option>
+						<option value="24">24일</option>
+						<option value="25">25일</option>
+						<option value="26">26일</option>
+						<option value="27">27일</option>
+						<option value="28">28일</option>
+						<option value="29">29일</option>
+						<option value="30">30일</option>
+						<option value="31">31일</option>
+					</select>
+				</div>
+			</div>
+			<div class="register_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">시작시간</div>
+					<select class="register_select_style" id="pop_scheduler_modify_Start" data-role="none">
+						<option value="no">회의시작 시간</option>
+						<option value="8_00">8시</option>
+						<option value="8_10">8시 10분</option>
+						<option value="8_20">8시 20분</option>
+						<option value="8_30">8시 30분</option>
+						<option value="8_40">8시 40분</option>
+						<option value="8_50">8시 50분</option>
+						<option value="9_00">9시</option>
+						<option value="9_10">9시 10분</option>
+						<option value="9_20">9시 20분</option>
+						<option value="9_30">9시 30분</option>
+						<option value="9_40">9시 40분</option>
+						<option value="9_50">9시 50분</option>
+						<option value="10_00">10시</option>
+						<option value="10_10">10시 10분</option>
+						<option value="10_20">10시 20분</option>
+						<option value="10_30">10시 30분</option>
+						<option value="10_40">10시 40분</option>
+						<option value="10_50">10시 50분</option>
+						<option value="11_00">11시</option>
+						<option value="11_10">11시 10분</option>
+						<option value="11_20">11시 20분</option>
+						<option value="11_30">11시 30분</option>
+						<option value="11_40">11시 40분</option>
+						<option value="11_50">11시 50분</option>
+						<option value="12_00">12시</option>
+						<option value="12_10">12시 10분</option>
+						<option value="12_20">12시 20분</option>
+						<option value="12_30">12시 30분</option>
+						<option value="12_40">12시 40분</option>
+						<option value="12_50">12시 50분</option>
+						<option value="13_00">13시</option>
+						<option value="13_10">13시 10분</option>
+						<option value="13_20">13시 20분</option>
+						<option value="13_30">13시 30분</option>
+						<option value="13_40">13시 40분</option>
+						<option value="13_50">13시 50분</option>
+						<option value="14_00">14시</option>
+						<option value="14_10">14시 10분</option>
+						<option value="14_20">14시 20분</option>
+						<option value="14_30">14시 30분</option>
+						<option value="14_40">14시 40분</option>
+						<option value="14_50">14시 50분</option>
+						<option value="15_00">15시</option>
+						<option value="15_10">15시 10분</option>
+						<option value="15_20">15시 20분</option>
+						<option value="15_30">15시 30분</option>
+						<option value="15_40">15시 40분</option>
+						<option value="15_50">15시 50분</option>
+						<option value="16_00">16시</option>
+						<option value="16_10">16시 10분</option>
+						<option value="16_20">16시 20분</option>
+						<option value="16_30">16시 30분</option>
+						<option value="16_40">16시 40분</option>
+						<option value="16_50">16시 50분</option>
+						<option value="17_00">17시</option>
+						<option value="17_10">17시 10분</option>
+						<option value="17_20">17시 20분</option>
+						<option value="17_30">17시 30분</option>
+						<option value="17_40">17시 40분</option>
+						<option value="17_50">17시 50분</option>
+						<option value="18_00">18시</option>
+						<option value="18_10">18시 10분</option>
+						<option value="18_20">18시 20분</option>
+						<option value="18_30">18시 30분</option>
+						<option value="18_40">18시 40분</option>
+						<option value="18_50">18시 50분</option>
+						<option value="19_00">19시</option>
+						<option value="19_10">19시 10분</option>
+						<option value="19_20">19시 20분</option>
+						<option value="19_30">19시 30분</option>
+						<option value="19_40">19시 40분</option>
+						<option value="19_50">19시 50분</option>
+						<option value="20_00">20시</option>
+						<option value="20_10">20시 10분</option>
+						<option value="20_20">20시 20분</option>
+						<option value="20_30">20시 30분</option>
+						<option value="20_40">20시 40분</option>
+						<option value="20_50">20시 50분</option>
+						<option value="21_00">21시</option>
+						<option value="21_10">21시 10분</option>
+						<option value="21_20">21시 20분</option>
+						<option value="21_30">21시 30분</option>
+						<option value="21_40">21시 40분</option>
+						<option value="21_50">21시 50분</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="register_wrap">
+				<div class="find_input1 common_border">
+					<div class="find_id_mobile">종료시간</div>
+					<select class="register_select_style" id="pop_scheduler_modify_End" data-role="none">
+						<option value="no">회의시작 시간</option>
+						<option value="8_00">8시</option>
+						<option value="8_10">8시 10분</option>
+						<option value="8_20">8시 20분</option>
+						<option value="8_30">8시 30분</option>
+						<option value="8_40">8시 40분</option>
+						<option value="8_50">8시 50분</option>
+						<option value="9_00">9시</option>
+						<option value="9_10">9시 10분</option>
+						<option value="9_20">9시 20분</option>
+						<option value="9_30">9시 30분</option>
+						<option value="9_40">9시 40분</option>
+						<option value="9_50">9시 50분</option>
+						<option value="10_00">10시</option>
+						<option value="10_10">10시 10분</option>
+						<option value="10_20">10시 20분</option>
+						<option value="10_30">10시 30분</option>
+						<option value="10_40">10시 40분</option>
+						<option value="10_50">10시 50분</option>
+						<option value="11_00">11시</option>
+						<option value="11_10">11시 10분</option>
+						<option value="11_20">11시 20분</option>
+						<option value="11_30">11시 30분</option>
+						<option value="11_40">11시 40분</option>
+						<option value="11_50">11시 50분</option>
+						<option value="12_00">12시</option>
+						<option value="12_10">12시 10분</option>
+						<option value="12_20">12시 20분</option>
+						<option value="12_30">12시 30분</option>
+						<option value="12_40">12시 40분</option>
+						<option value="12_50">12시 50분</option>
+						<option value="13_00">13시</option>
+						<option value="13_10">13시 10분</option>
+						<option value="13_20">13시 20분</option>
+						<option value="13_30">13시 30분</option>
+						<option value="13_40">13시 40분</option>
+						<option value="13_50">13시 50분</option>
+						<option value="14_00">14시</option>
+						<option value="14_10">14시 10분</option>
+						<option value="14_20">14시 20분</option>
+						<option value="14_30">14시 30분</option>
+						<option value="14_40">14시 40분</option>
+						<option value="14_50">14시 50분</option>
+						<option value="15_00">15시</option>
+						<option value="15_10">15시 10분</option>
+						<option value="15_20">15시 20분</option>
+						<option value="15_30">15시 30분</option>
+						<option value="15_40">15시 40분</option>
+						<option value="15_50">15시 50분</option>
+						<option value="16_00">16시</option>
+						<option value="16_10">16시 10분</option>
+						<option value="16_20">16시 20분</option>
+						<option value="16_30">16시 30분</option>
+						<option value="16_40">16시 40분</option>
+						<option value="16_50">16시 50분</option>
+						<option value="17_00">17시</option>
+						<option value="17_10">17시 10분</option>
+						<option value="17_20">17시 20분</option>
+						<option value="17_30">17시 30분</option>
+						<option value="17_40">17시 40분</option>
+						<option value="17_50">17시 50분</option>
+						<option value="18_00">18시</option>
+						<option value="18_10">18시 10분</option>
+						<option value="18_20">18시 20분</option>
+						<option value="18_30">18시 30분</option>
+						<option value="18_40">18시 40분</option>
+						<option value="18_50">18시 50분</option>
+						<option value="19_00">19시</option>
+						<option value="19_10">19시 10분</option>
+						<option value="19_20">19시 20분</option>
+						<option value="19_30">19시 30분</option>
+						<option value="19_40">19시 40분</option>
+						<option value="19_50">19시 50분</option>
+						<option value="20_00">20시</option>
+						<option value="20_10">20시 10분</option>
+						<option value="20_20">20시 20분</option>
+						<option value="20_30">20시 30분</option>
+						<option value="20_40">20시 40분</option>
+						<option value="20_50">20시 50분</option>
+						<option value="21_00">21시</option>
+						<option value="21_10">21시 10분</option>
+						<option value="21_20">21시 20분</option>
+						<option value="21_30">21시 30분</option>
+						<option value="21_40">21시 40분</option>
+						<option value="21_50">21시 50분</option>
+					</select>
+				</div>
+			</div>
+			<div class="register_wrap" onclick="pop_scheduler_modify()">
+				<span class="common_blut_text">수정</span>
+				<img class="common_blue_btn" src="img/blue_btn.gif">
+			</div>
+			<a href="#pop_scheduler"><div class="register_wrap">
+				<span class="common_blut_text">취소</span>
+				<img class="common_blue_btn" src="img/gray_btn.gif">
+			</div></a>
+		</div>
+
+		<div data-role="page" id="pop_choice"> 
+			<div id="pop_choice_head">
+				<span>참여인원</span>
+				<div class="choice_Num">
+					<select id="choice_Num">
+						<option value="0" selected>인원</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+					</select>
+				</div>
+				<span>당첨인원</span>
+			</div>
+			<div id="pop_choice_content"> 
+
+			</div>
+			<div id="pop_choice_footer">
+
+			</div>
+		</div>
+
+		<div data-role="page" id="pop_notice"> 
+			<div class="common_head_fixed">
+				<div class="common_head_content">
+					<span class="common_head_text">공지사항</span>
+					<a href="#main"><img class="close_btn" src="img/close_btn.gif"></a>
+				</div>
+				<img class="common_top_bg" src="img/top_bg.gif">
+			</div>
+			<div class="notice_content">
+				<div style="width:100%;height:55px;color:#4f5f6f;text-shadow:0 0 0 white;font-size:18px;text-align:center;border-bottom:1px solid #90a4b4;">
+					<div style="width:40%;height:55px;line-height:55px;float:left;">
+						제목
+					</div>
+					<div style="width:15%;height:55px;line-height:55px;float:left;background-color:#edeff0;">
+						이름
+					</div>
+					<div style="width:30%;height:55px;line-height:55px;float:left;">
+						날짜
+					</div>
+					<div style="width:15%;height:55px;line-height:55px;float:left;background-color:#edeff0;">
+						조회수
+					</div>
+				</div>
+				<div id="notice_content">
+
+				</div>
+			</div>
+			<div class="pop_notice_footer" onclick="moreNoticeList()" pageNumber="10">
+				<div style="position:absolute;z-index:9999;width:100%;height:50px;text-align:center;">
+					<img src="img/notice_foot_icon.gif" style="position:absolute;margin-top:15px;width:17px;">
+					<span style="font-size:18px;text-shadow:0 0 0 white;line-height:50px;color:white;margin-left:26px;">더보기</span>
+				</div>
+				<img src="img/notice_foot_bg.gif" style="width:100%;height:50px;position:relative;">
+			</div>
+		</div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

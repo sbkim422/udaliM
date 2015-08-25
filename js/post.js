@@ -32,7 +32,6 @@ $(function(){
 	$("#main_map_view").on("pagebeforeshow", function(){
 		var v = String(localStorage.main_map_view);
 		$("#main_map_view_content").empty();
-		$("#main_map_view_content").width($(this).width())
 		html="";
 		switch(v){
 			case "1":
@@ -778,6 +777,7 @@ $(function(){
 	})
 
 	$("#pop_modify").on( "pagebeforeshow", function() {
+		$(".condition_init").attr("src","img/conditionBar_off.gif")
 		pop_modify.arr=[]
 		//좌석배치
 		var url = "http://int.udali.com/udaliM/chairOrder.php";
@@ -821,7 +821,6 @@ $(function(){
 		//기타 입력값
 		var email = v[0].email
 		var mobile = v[0].mobile
-		$("#pop_modify_id").val(v[0].id)
 		$("#pop_modify_pw").val(v[0].pwd)
 		$("#pop_modify_pw2").val(v[0].pwd)
 		$("#pop_modify_email").val(email.split("@")[0])
@@ -859,17 +858,16 @@ $(function(){
 		$("#modify_job_grade").prev().text(v[0].level)
 		*/
 		$("#pop_modify_toking").val(v[0].m_copy)
-		$(".condition_init").addClass("common_border")
-		$(".condition_init").removeClass("common_border_color")
 		if(v[0].condition!="null" || v[0].condition!=0){
 			$("#modify_condition1").attr("st",v[0].condition)
 			for(var i=1;i<Number(v[0].condition)+1;i++){
-				$("#modify_condition"+i).addClass("common_border_color")
+				$("#modify_condition"+i).attr("src", "img/conditionBar_on.gif");
 			}
 		}
 	})
 
 	$("#pop_mypage").on("pagebeforeshow", function() {
+		$(".mypage_condition_init").attr("src","img/conditionBar_off.gif")
 		var value = {}
 		value.id = main.id;
 		if(value.id=="hwang"){
@@ -892,11 +890,9 @@ $(function(){
 			var main_part = part(v[0].part_idx);
 			document.getElementById("pop_mypage_job_workState").value = v[0].workStat
 			$("#pop_mypage_toking").val(v[0].m_copy==""?"-":v[0].m_copy)
-			$(".mypage_condition_init").addClass("common_border")
-			$(".mypage_condition_init").removeClass("common_border_color")
 			if(v[0].condition!="null" || v[0].condition!=0){
 				for(var i=1;i<Number(v[0].condition)+1;i++){
-					$("#mypage_condition"+i).addClass("common_border_color")
+					$("#mypage_condition"+i).attr("src", "img/conditionBar_on.gif");
 				}
 			}	
 		})
@@ -1247,11 +1243,10 @@ function check(v){
 
 //pop_join오늘 나의 컨디션 박스 선택
 function joboxClick(n){
-	$(".condition_init").addClass("common_border");
-	$(".condition_init").removeClass("common_border_color");
+	$(".condition_init").attr("src","img/conditionBar_off.gif");
 	$("#join_condition1").attr("st",n);
 	for(var i=1;i<n+1;i++){
-		$("#join_condition"+i).addClass("common_border_color");
+		$("#join_condition"+i).attr("src","img/conditionBar_on.gif");
 	}
 }
 //pop_mypage오늘 나의 컨디션 박스 선택
@@ -1263,20 +1258,18 @@ function mpboxClick(n){
 	}
 }
 function myboxClick(n){
-	$(".mypage_condition_init").addClass("common_border")
-	$(".mypage_condition_init").removeClass("common_border_color")
+	$(".mypage_condition_init").attr("src","img/conditionBar_off.gif");
 	$("#mypage_condition1").attr("st",n)
 	for(var i=1;i<n+1;i++){
-		$("#mypage_condition"+i).addClass("common_border_color")
+		$("#mypage_condition"+i).attr("src","img/conditionBar_on.gif");
 	}
 }
 //pop_modify오늘 나의 컨디션 박스 선택
 function mfboxClick(n){
-	$(".condition_init").addClass("common_border")
-	$(".condition_init").removeClass("common_border_color")
+	$(".condition_init").attr("src","img/conditionBar_off.gif");
 	$("#modify_condition1").attr("st",n)
 	for(var i=1;i<n+1;i++){
-		$("#modify_condition"+i).addClass("common_border_color")
+		$("#modify_condition"+i).attr("src","img/conditionBar_on.gif");
 	}
 }
 
@@ -1779,6 +1772,7 @@ function viewCloseBtn(){
 }
 
 function showPro(v){
+	$(".condition_init").attr("src","img/conditionBar_off.gif")
 	var value = {}
 	value.id = v;
 	var url = "http://int.udali.com/udaliM/pop_profile.php";
@@ -1801,11 +1795,9 @@ function showPro(v){
 		$("#pop_profile_2").val(main_part)
 		$("#pop_profile_3").val(main_workStat)
 		$("#pop_profile_4").val((v[0].m_copy)?v[0].m_copy:"나의 한마디")
-		$(".condition_init").removeClass("common_border_color")
-		$(".condition_init").addClass("common_border")
 		if(v[0].condition!="null" || v[0].condition!=0){
 			for(var i=0;i<Number(v[0].condition)+1;i++){
-				$("#profile_condition"+i).addClass("common_border_color")
+				$("#profile_condition"+i).attr("src","img/conditionBar_on.gif")
 			}
 			location.href="#pop_profile"
 		}else{

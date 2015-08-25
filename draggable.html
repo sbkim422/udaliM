@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>jQuery UI Droppable - Default functionality</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+<style>
+
+.container{position:relative;}
+.left_con{position:fixed; top:10px; font-size:12px; color:#000; float:left; border:2px dashed #666;}
+.center_con{position:relative; margin-left:500px;}
+
+.drag_box{opacity:0.8; border:1px solid #0F0;}
+.select_on{color:#F00;}
+.select_off{color:#000;}
+.container_name{font-size:24px; font-weight:bold; color:#fff; background-color:#000; }
+
+</style>
+<script>
+var img_directory = "img/";
+var parcent_mode = true;
+var index_container = 0;
+var index_drag_box = 0;
+var obj_drag_box;
+/*
+$(function() {
+  $( ".drag_box" ).draggable();
+  
+  $( "#droppable" ).droppable({
+	drop: function( event, ui ) {
+	  $( this )
+		.addClass( "ui-state-highlight" )
+		.find( "p" )
+		  .html( "Dropped!" );
+	}
+  });
+  
+});
+*/
+$(document).ready(function(){
+  
+
+  // write_drag_box();
+
+
+
+   $(window).bind("keydown",function(event){ 
+/*방향키의 스크롤움직임 막기
+document.addEventListener('keydown', function(e) {
+		if(e.keyCode > 36 && e.keyCode < 41) {
+			e.preventDefault();
+		}
+		if (e.keyCode === 40) {
+			down();
+		} else if (e.keyCode === 38) {
+			up();
+		} else if (e.keyCode === 37) {
+			leftclick();
+		} else if (e.keyCode === 39) {
+	   rightclick();
+		}
+		return false;
+	}, false);
+}
+방향키의 스크롤움직임 막기end*/
+		
+    //event.shiftKey
+	var shift_num = 0;
+	if(event.shiftKey == true){
+		shift_num = 50;
+	}else{
+		shift_num = 0;
+	}
+	//event.ctrlKey
+	if(event.ctrlKey==false){
+		write_drag_box();
+	}
+
+	if(obj_drag_box != undefined){
+		switch(event.which){
+		  case 37://좌
+			  obj_drag_box.css("left","-="+(1+shift_num)+"px");
+			  break;
+		  case 39://우
+			  obj_drag_box.css("left","+="+(1+shift_num)+"px");
+			  break;	
+		  case 38://상
+			  event.preventDefault();
+			  obj_drag_box.css("top","-="+(1+shift_num)+"px");
+			  break;	
+		  case 40://하
+			  event.preventDefault();
+			  obj_drag_box.css("top","+="+(1+shift_num)+"px");
+			  break;	
+		}
+	}
+	
+	
+   });
+   
+   $('.output_text').css("left",$('.container').width()+50);
+
+   //$("html").unbind("keydown");
+});
+function delete_depth1(idx){
+	$(".container:eq("+idx+")").remove();
+	$(".container_name:eq("+idx+")").remove();
+	$(".container_box>option:eq("+idx+")").remove();
+	write_drag_box();
+}
+
+
+function write_drag_box(){
+
+	var txt="";
+	var select_txt= "select_off";
+	for(j = 0; j<$('.container').length; j++){
+		txt = txt+ "<p class='container_name'>&nbsp;&nbsp;container"+j+"<a href='#'>delete</a></p><div>"
+		for(i=0; i<$('.container:eq('+j+')>.drag_box').length; i++){
+		    var $this = $('.container:eq('+j+')>.drag_box:eq('+i+')');
+			var src_name = $this.attr("src");
+			//alert(src_name);
+			if(src_name != undefined){
+				src_name=src_name.replace(img_directory,"");
+				src_name=src_name.replace(".jpg","");
+				src_name=src_name.replace(".gif","");
+				src_name=src_name.replace(".png","");
+				$this.addClass(src_name);
+			}else{
+				src_name = "not_img";
+			}
+		   
+		    
+			if( index_container == j && index_drag_box == i ){
+				$this.css({"z-index":1000,"border":"1px solid #ff0000"});
+				select_txt= "select_on";
+			}else{
+				$this.css({"z-index":10,"border":"1px solid #0F0"});
+				select_txt= "select_off";
+			}
+		
+			if(parcent_mode == true){
+				txt = txt+ "<p class='"+select_txt+"'>&nbsp;&nbsp;&nbsp;&nbsp; ."+src_name+"&nbsp;{position:absolute; &nbsp;&nbsp;";
+				txt = txt+ "top:"+(($this.position().top/$this.parent().height()) * 100).toFixed(2) +"%; &nbsp;&nbsp;";
+				txt = txt+ "left:"+(($this.position().left/$this.parent().width()) * 100).toFixed(2)+"%; &nbsp;&nbsp;";
+				txt = txt+ "width:"+(($this.width()/$this.parent().width()) * 100).toFixed(2)+"%;}&nbsp;&nbsp;&nbsp;&nbsp;<\/p>";
+			}else{				
+				txt = txt+ "<p class='"+select_txt+"'>&nbsp;&nbsp;&nbsp;&nbsp;."+src_name+"&nbsp;{position:absolute; &nbsp;&nbsp;";
+				txt = txt+ "top:"+($this.position().top) +"px; &nbsp;&nbsp;";
+				txt = txt+ "left:"+($this.position().left)+"px; &nbsp;&nbsp;";
+				txt = txt+ "width:"+($this.width())+"px;}&nbsp;&nbsp;&nbsp;&nbsp;<\/p>";
+			}
+		}
+		txt = txt+"</div>";
+	}
+	$(".output_text").html(txt);
+	//console.log(txt);
+
+   $(".container_name>a").bind("click",function(){
+   		delete_depth1($(this).parent().index()/2)
+   })
+  
+}
+
+function file_select(file_url){
+	//alert(file_url.value);
+}
+function onFileSelected(file_name){
+
+	var selectedFiles = file_name.files;
+	var fileInfos=[];
+	var strFileInfo="";
+	for(var i=0;i<selectedFiles.length;i++){
+		var file = selectedFiles[i]; 
+		//fileInfos.push("파일 이름 : "+file.name+" 크기 :"+file.size);
+		//strFileInfo+="파일 이름 : "+file.name+" 크기 :"+file.size+"\n";
+		fileInfos.push(file.name);
+	}
+	add_container(fileInfos,file_name.id);
+	//alert(fileInfos.join("\n"));
+	//document.getElementById("txt_Info").innerText=strFileInfo;
+	
+}
+
+function add_container(arr,ids){
+
+   for(i = 0; i<arr.length; ++i){
+		load_container_img(arr[i],ids)
+   }
+   /*
+   $('.container').each(function() {
+   	 i++;
+	 $(this).css("background","url(images/bg_g"+i+".jpg)")
+	 $(this).css("width","500px")
+	 $(this).css("height","500px")
+   });
+   
+   $(".wrap").append("<div style=''></div>");
+   $(".file_con").html('<input id="file" type="file" multiple accept="images/*" onchange="onFileSelected(this)">');
+   */
+   $("."+ids+"_con").html('<input id="'+ids+'" type="file" multiple accept="images/*" onchange="onFileSelected(this)">');
+  
+}
+
+function load_container_img(url,id){
+   /*이미지로드이벤트*/
+   var imgs = new Image();
+   imgs.onload = function(e){
+	   if(id =="file_parent"){
+	   		$(".center_con").append("<div class='container container"+i+"' style='background:url("+(img_directory+url)+"); width:"+this.width+"px; height:"+this.height+"px;'></div>");
+			add_container_box();
+	   }else if(id =="file_child"){
+		    var num = select_container_box();
+			$(".container:eq("+num+")").append("<img class='drag_box' src='"+(img_directory+url)+"' alt=''>");
+			bind_event_dragbox();
+	   }
+	   write_drag_box();
+   }
+   imgs.onerror = function(e){
+   	   alert("이미지 로드 에러 다시 시도 해주세요");
+   }
+   imgs.src= img_directory+url;
+}
+function add_container_box(){
+   var sel = "";
+   for(i=0; i<$('.container').length; i++){
+   	   sel = sel + "<option value='"+i+"'>container"+i+"</option>";
+   }
+   $(".container_box").html(sel);
+}
+function select_container_box(){
+	var num = $(".container_box option:selected").index();
+	$('html,body').stop().animate({scrollTop:$(".container:eq("+num+")").offset().top},300);
+	return num;
+}
+
+function bind_event_dragbox(){
+   $('.drag_box').draggable();
+   $('.drag_box').mousedown(function(){
+	  index_container = $(this).parent().index();
+	  index_drag_box = $(this).index();
+	  obj_drag_box = $(this);
+   });
+   $('.drag_box').mouseup(function(){
+	  obj_drag_box = $(this);
+	  write_drag_box();
+   });
+   
+}
+
+
+
+/*
+function load_drag_box_img(url){
+  이미지로드이벤트
+   var imgs = new Image();
+   imgs.onload = function(e){
+	   $(".container").append("<img class='drag_box' src='images/"+url+"' alt=''>");
+   }
+   imgs.onerror = function(e){
+   	   alert("이미지 로드 에러 다시 시도 해주세요");
+   }
+   imgs.src="images/"+url;
+}
+*/
+
+
+</script>
+</head>
+<body style=" background-color: #fff">
+<div class="wrap">
+	<!--multiple 속성 :  여러파일을 한꺼번에 선택가능
+	accept 속성 : MIME type을 선택하여 파일들을 filtering 할수있음.-->
+    
+    <div class="left_con">
+        <div>
+            <p>container add</p>
+            <p class="file_parent_con"><input id="file_parent" type="file" multiple accept="images/*" onchange="onFileSelected(this)"></p>
+        </div>
+        <div>
+            <p>container_child add</p>
+            <select class="container_box" onChange="select_container_box()" >
+                <option value="null">container box null</option>
+            </select>
+            <p class="file_child_con"><input id="file_child" type="file" multiple accept="images/*" onchange="onFileSelected(this)"></p>
+        </div>
+        <div class="output_text"></div>
+    </div>
+    
+    <div class="center_con">
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
